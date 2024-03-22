@@ -1,0 +1,477 @@
+{
+  "id": 1,
+  "templateName": "Art-Store",
+  "Home": {
+    "dataForTags": [
+      {
+        "id": 1,
+        "image": "./src/Templates/ArtStore/assets/sculpture1.jpg",
+        "title": "Full Round Sculpting",
+        "ListItems": [
+          {
+            "listId": 1,
+            "title": "Roman Figure",
+            "image": "require('./assets/listImage1.jpg')",
+            "price": "29999"
+          },
+          {
+            "listId": 2,
+            "title": "Elegant Mannequin",
+            "price": "22499",
+            "image": "require('./assets/listImage2.jpg')"
+          },
+          {
+            "listId": 3,
+            "title": "Daniel Robert statue",
+            "price": "18000",
+            "image": "require('./assets/listImage3.jpg')"
+          },
+          {
+            "listId": 4,
+            "title": "Elephant Statue",
+            "price": "19999",
+            "image": "require('./assets/listImage4.jpg')"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "image": "./src/Templates/ArtStore/assets/sculpture2.jpg",
+        "title": "Casting Sculptures",
+        "ListItems": [
+          {
+            "listId": 1,
+            "title": "Ancient Childern Playing",
+            "image": "require('./assets/sculpture1.jpg')",
+            "price": "29999"
+          },
+          {
+            "listId": 2,
+            "title": "Ancient Statue of Head David",
+            "price": "22499",
+            "image": "require('./assets/sculpture2.jpg')"
+          },
+          {
+            "listId": 3,
+            "title": "Golden Dress Statue",
+            "price": "18000",
+            "image": "require('./assets/sculpture3.jpg')"
+          },
+          {
+            "listId": 4,
+            "title": "Little Girl Statue",
+            "price": "19999",
+            "image": "require('./assets/sculpture4.jpg')"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "image": "./src/Templates/ArtStore/assets/sculpture3.jpg",
+        "title": "Installation Sculptures",
+        "ListItems": [
+          {
+            "listId": 1,
+            "title": "Book Sculpture",
+            "image": "require('./assets/sculpture5.jpg')",
+            "price": "29999"
+          },
+          {
+            "listId": 2,
+            "title": "The Girl and The Horse",
+            "price": "22499",
+            "image": "require('./assets/sculpture6.jpg')"
+          },
+          {
+            "listId": 3,
+            "title": "Statues under Watering",
+            "price": "18000",
+            "image": "require('./assets/sculpture3.jpg')"
+          },
+          {
+            "listId": 4,
+            "title": "Geometric Shapes",
+            "price": "19999",
+            "image": "require('./assets/sculpture1.jpg')"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "image": "./src/Templates/ArtStore/assets/sculpture4.jpg",
+        "title": "Modelling Sculptures",
+        "ListItems": [
+          {
+            "listId": 1,
+            "title": "Atlanta Farnese Statues",
+            "image": "require('./assets/listImage4.jpg')",
+            "price": "29999"
+          },
+          {
+            "listId": 2,
+            "title": "Thinking Man Statues",
+            "price": "22499",
+            "image": "require('./assets/listImage3.jpg')"
+          },
+          {
+            "listId": 3,
+            "title": "Businessmen Statues",
+            "price": "18000",
+            "image": "require('./assets/listImage1.jpg')"
+          },
+          {
+            "listId": 4,
+            "title": "White Budhha",
+            "price": "19999",
+            "image": "require('./assets/listImage2.jpg')"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "image": "./src/Templates/ArtStore/assets/sculpture1.jpg",
+        "title": "new card",
+        "ListItems": [
+          {
+            "list-id": 1,
+            "title": "Roman Figure",
+            "image": "require('./assets/listImage1.jpg')",
+            "price": "₹29999"
+          },
+          {
+            "list-id": 2,
+            "title": "Elegant Mannequin",
+            "price": "₹22499",
+            "image": "require('./assets/listImage2.jpg')"
+          },
+          {
+            "list-id": 3,
+            "title": "Daniel Robert statue",
+            "price": "₹18000",
+            "image": "require('./assets/listImage3.jpg')"
+          },
+          {
+            "list-id": 4,
+            "title": "Elephant Statue",
+            "price": "₹19999",
+            "image": "require('./assets/listImage4.jpg')"
+          }
+        ]
+      }
+    ]
+  },
+  "Paintings": {
+    "dataForTags": [
+      {
+        "image": "require('./assets/abstract.jpg')",
+        "title": "Abstract",
+        "ListItems": [
+          {
+            "title": "Roman Figure",
+            "image": "require('./assets/abstract1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Elegant Mannequin",
+            "price": "22499",
+            "image": "require('./assets/abstract2.jpg')"
+          },
+          {
+            "title": "Daniel Robert statue",
+            "price": "18000",
+            "image": "require('./assets/abstract3.jpg')"
+          },
+          {
+            "title": "Elephant Statue",
+            "price": "19999",
+            "image": "require('./assets/abstract4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/photorealism.jpg')",
+        "title": "Expressionism",
+        "ListItems": [
+          {
+            "title": "Ancient Childern Playing",
+            "image": "require('./assets/expressionism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Ancient Statue of Head David",
+            "price": "22499",
+            "image": "require('./assets/expressionism2.jpg')"
+          },
+          {
+            "title": "Golden Dress Statue",
+            "price": "18000",
+            "image": "require('./assets/expressionism3.jpg')"
+          },
+          {
+            "title": "Little Girl Statue",
+            "price": "19999",
+            "image": "require('./assets/expressionism4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/expressionism.jpg')",
+        "title": "Impressionism",
+        "ListItems": [
+          {
+            "title": "Book Sculpture",
+            "image": "require('./assets/impressionism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "The Girl and The Horse",
+            "price": "22499",
+            "image": "require('./assets/impressionism2.jpg')"
+          },
+          {
+            "title": "Statues under Watering",
+            "price": "18000",
+            "image": "require('./assets/impressionism3.jpg')"
+          },
+          {
+            "title": "Geometric Shapes",
+            "price": "19999",
+            "image": "require('./assets/impressionism4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/impressionism.jpg')",
+        "title": "Photorealism",
+        "ListItems": [
+          {
+            "title": "Atlanta Farnese Statues",
+            "image": "require('./assets/photorealism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Thinking Man Statues",
+            "price": "22499",
+            "image": "require('./assets/photorealism2.jpg')"
+          },
+          {
+            "title": "Businessmen Statues",
+            "price": "18000",
+            "image": "require('./assets/photorealism3.jpg')"
+          },
+          {
+            "title": "White Budhha",
+            "price": "19999",
+            "image": "require('./assets/photorealism.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/popart.jpg')",
+        "title": "Pop art",
+        "ListItems": [
+          {
+            "title": "Budhist Temple",
+            "image": "require('./assets/popart1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Buddhist Temple with Budha",
+            "price": "22499",
+            "image": "require('./assets/popart2.jpg')"
+          },
+          {
+            "title": "Decorative walls",
+            "price": "18000",
+            "image": "require('./assets/popart3.jpg')"
+          },
+          {
+            "title": "Girona medival",
+            "price": "19999",
+            "image": "require('./assets/popart4.jpg')"
+          }
+        ]
+      }
+    ]
+  },
+  "Crafts": {
+    "dataForTags": [
+      {
+        "image": "require('./assets/abstract5.jpg')",
+        "title": "Aceramics and Glasses",
+        "ListItems": [
+          {
+            "title": "Cup and Saucer",
+            "image": "require('./assets/abstract1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Moroccan Pottery",
+            "price": "22499",
+            "image": "require('./assets/abstract2.jpg')"
+          },
+          {
+            "title": "Adean Mug",
+            "price": "18000",
+            "image": "require('./assets/abstract3.jpg')"
+          },
+          {
+            "title": "American DOlls",
+            "price": "19999",
+            "image": "require('./assets/abstract4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/expressionism4.jpg')",
+        "title": "Flowers",
+        "ListItems": [
+          {
+            "title": "A frame with flower",
+            "image": "require('./assets/expressionism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Spring Flowers",
+            "price": "22499",
+            "image": "require('./assets/expressionism2.jpg')"
+          },
+          {
+            "title": "Flat lay Flowers",
+            "price": "18000",
+            "image": "require('./assets/expressionism3.jpg')"
+          },
+          {
+            "title": "Flowers Bouquet",
+            "price": "19999",
+            "image": "require('./assets/expressionism4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/impressionism4.jpg')",
+        "title": "HouseWare",
+        "ListItems": [
+          {
+            "title": "Ceramic Products",
+            "image": "require('./assets/impressionism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Paper Tableware",
+            "price": "22499",
+            "image": "require('./assets/impressionism2.jpg')"
+          },
+          {
+            "title": "Green silicon Plates",
+            "price": "18000",
+            "image": "require('./assets/impressionism3.jpg')"
+          },
+          {
+            "title": "Wooden Utensils",
+            "price": "19999",
+            "image": "require('./assets/impressionism4.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/popart4.jpg')",
+        "title": "Needle work",
+        "ListItems": [
+          {
+            "title": "Bamboo Wicker Types",
+            "image": "require('./assets/photorealism1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Embroidery Hoop",
+            "price": "22499",
+            "image": "require('./assets/photorealism2.jpg')"
+          },
+          {
+            "title": "Knitted Dolls",
+            "price": "18000",
+            "image": "require('./assets/photorealism3.jpg')"
+          },
+          {
+            "title": "Knitted Flowers",
+            "price": "19999",
+            "image": "require('./assets/photorealism.jpg')"
+          }
+        ]
+      },
+      {
+        "image": "require('./assets/listImage1.jpg')",
+        "title": "Paper crafts",
+        "ListItems": [
+          {
+            "title": "crafted tree",
+            "image": "require('./assets/popart1.jpg')",
+            "price": "29999"
+          },
+          {
+            "title": "Botanical Elements",
+            "price": "22499",
+            "image": "require('./assets/popart2.jpg')"
+          },
+          {
+            "title": "Cristmas DIY crafts",
+            "price": "18000",
+            "image": "require('./assets/popart3.jpg')"
+          },
+          {
+            "title": "Paper Mask",
+            "price": "19999",
+            "image": "require('./assets/popart4.jpg')"
+          }
+        ]
+      }
+    ]
+  },
+  "BottomTabData": [
+    {
+      "name": "man",
+      "size": 22,
+      "Page": "Home",
+      "id": "de75"
+    },
+    {
+      "name": "color-lens",
+      "size": 22,
+      "Page": "Painting",
+      "id": "18f5"
+    },
+    {
+      "name": "scissors",
+      "size": 22,
+      "Page": "scissors",
+      "id": "cc4a"
+    },
+    {
+      "name": "user-circle",
+      "size": 22,
+      "Page": "User",
+      "id": "391c"
+    }
+  ],
+  "User": {
+    "title": "CREATIVE ARTS",
+    "address": "Indore",
+    "phone": "9993688990",
+    "email": "Himanshu@gmail.com",
+    "socialmedia": [
+      {
+        "platform": "facebook",
+        "link": "http://google.co.in"
+      },
+      {
+        "platform": "instagram",
+        "link": "http://instagram.com"
+      },
+      {
+        "platform": "youtube",
+        "link": "http://youtube.com"
+      }
+    ]
+  }
+}

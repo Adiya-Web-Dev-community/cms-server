@@ -1,0 +1,15 @@
+const express = require('express')
+const router = express.Router()
+const middleware = require("../middleware/account");
+const TokentExpiry=require("../middleware/checkTokenExpiry")
+//controllers
+const { register, login, verifyOTP, addPassword } = require('../controller/accountController.js')
+
+//routes
+router.post("/account/register", register)
+router.post("/account/login", login)
+router.put("/account/verifyOTP", verifyOTP)
+router.put("/account/password", middleware, addPassword)
+router.get("/check-token",TokentExpiry)
+
+module.exports = router

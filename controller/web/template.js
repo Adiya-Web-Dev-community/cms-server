@@ -1,7 +1,7 @@
-const Section = require("../models/section");
-const template = require("../models/manager/templatePage");
-const Page = require("../models/client/page");
-const Product = require("../models/client/product");
+const Section = require("../../models/web/section");
+const template = require("../../models/web/manager/templatePage");
+const Page = require("../../models/web/client/page");
+const Product = require("../../models/web/client/product");
 const createTemplate = async (req, res) => {
   try {
     const { title, styleInfo,path, sections,productId,navigationId } = req.body;

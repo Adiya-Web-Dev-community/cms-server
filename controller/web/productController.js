@@ -1,6 +1,6 @@
-const Product = require("../models/client/product");
-const Page = require("../models/client/page")
-const User = require("../models/user");
+const Product = require("../../models/web/client/product");
+const Page = require("../../models/web/client/page")
+const User = require("../../models/web/user");
 
 
 //create new product with one default HOME page

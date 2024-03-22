@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const middleware = require("../middleware/account");
+const middleware = require("../../middleware/account.js");
 //controllers
 const {
     createNewProduct,
@@ -9,7 +9,7 @@ const {
     getProductDetails,
     addDropdownMenu,
     getDropDownmenu
-} = require('../controller/productController.js')
+} = require('../../controller/web/productController.js')
 
 
 //routes

@@ -1,0 +1,459 @@
+{
+  "success": true,
+  "msg": "Successfully fetched pages",
+  "pagesArr": [
+    {
+      "_id": "66028e2d67b25c3d9896f1e9",
+      "title": "Home",
+      "data": [
+        {
+          "id": 1,
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "https://images.pexels.com/photos/208001/pexels-photo-208001.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "ListItems": [
+            {
+              "listId": 1,
+              "title": "Roman Figure",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "listId": 2,
+              "title": "Elegant Mannequin",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 3,
+              "title": "Daniel Robert statue",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 4,
+              "title": "Elephant Statue",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Casting Sculptures",
+          "ListItems": [
+            {
+              "listId": 1,
+              "title": "Ancient Childern Playing",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "listId": 2,
+              "title": "Ancient Statue of Head David",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 3,
+              "title": "Golden Dress Statue",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 4,
+              "title": "Little Girl Statue",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Installation Sculptures",
+          "ListItems": [
+            {
+              "listId": 1,
+              "title": "Book Sculpture",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "listId": 2,
+              "title": "The Girl and The Horse",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 3,
+              "title": "Statues under Watering",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 4,
+              "title": "Geometric Shapes",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Modelling Sculptures",
+          "ListItems": [
+            {
+              "listId": 1,
+              "title": "Atlanta Farnese Statues",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "listId": 2,
+              "title": "Thinking Man Statues",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 3,
+              "title": "Businessmen Statues",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "listId": 4,
+              "title": "White Budhha",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "new card",
+          "ListItems": [
+            {
+              "list-id": 1,
+              "title": "Roman Figure",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "₹29999"
+            },
+            {
+              "list-id": 2,
+              "title": "Elegant Mannequin",
+              "price": "₹22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "list-id": 3,
+              "title": "Daniel Robert statue",
+              "price": "₹18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "list-id": 4,
+              "title": "Elephant Statue",
+              "price": "₹19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        }
+      ],
+      "templateId": "66028e2d67b25c3d9896f1e7",
+      "__v": 1
+    },
+    {
+      "_id": "66028e5867b25c3d9896f1ed",
+      "title": "Paintings",
+      "data": [
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Abstract",
+          "ListItems": [
+            {
+              "title": "Roman Figure",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Elegant Mannequin",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Daniel Robert statue",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Elephant Statue",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Expressionism",
+          "ListItems": [
+            {
+              "title": "Ancient Childern Playing",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Ancient Statue of Head David",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Golden Dress Statue",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Little Girl Statue",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Impressionism",
+          "ListItems": [
+            {
+              "title": "Book Sculpture",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "The Girl and The Horse",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Statues under Watering",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Geometric Shapes",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Photorealism",
+          "ListItems": [
+            {
+              "title": "Atlanta Farnese Statues",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Thinking Man Statues",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Businessmen Statues",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "White Budhha",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Pop art",
+          "ListItems": [
+            {
+              "title": "Budhist Temple",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Buddhist Temple with Budha",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Decorative walls",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Girona medival",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        }
+      ],
+      "templateId": "66028e2d67b25c3d9896f1e7",
+      "__v": 1
+    },
+    {
+      "_id": "660290aaf55964f321275a3f",
+      "title": "Crafts",
+      "data": [
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Aceramics and Glasses",
+          "ListItems": [
+            {
+              "title": "Cup and Saucer",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Moroccan Pottery",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Adean Mug",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "American DOlls",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Flowers",
+          "ListItems": [
+            {
+              "title": "A frame with flower",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Spring Flowers",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Flat lay Flowers",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Flowers Bouquet",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "HouseWare",
+          "ListItems": [
+            {
+              "title": "Ceramic Products",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Paper Tableware",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Green silicon Plates",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Wooden Utensils",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Needle work",
+          "ListItems": [
+            {
+              "title": "Bamboo Wicker Types",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Embroidery Hoop",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Knitted Dolls",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Knitted Flowers",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        },
+        {
+          "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+          "title": "Paper crafts",
+          "ListItems": [
+            {
+              "title": "crafted tree",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "price": "29999"
+            },
+            {
+              "title": "Botanical Elements",
+              "price": "22499",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Cristmas DIY crafts",
+              "price": "18000",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            },
+            {
+              "title": "Paper Mask",
+              "price": "19999",
+              "image": "https://images.pexels.com/photos/1364073/pexels-photo-1364073.jpeg?auto=compress&cs=tinysrgb&w=400"
+            }
+          ]
+        }
+      ],
+      "templateId": "66028e2d67b25c3d9896f1e7",
+      "__v": 1
+    },
+    {
+      "_id": "66029137ff6fc9195385617c",
+      "title": "Crafts",
+      "data": [],
+      "templateId": "66028e2d67b25c3d9896f1e7",
+      "__v": 0
+    },
+    {
+      "_id": "660291c477fb3290b6279310",
+      "title": "Crafts",
+      "data": [],
+      "templateId": "66028e2d67b25c3d9896f1e7",
+      "__v": 0
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "msg": "Template data fetch successfully",
+  "data": {
+    "_id": "66028e2d67b25c3d9896f1e7",
+    "templateName": "Art-Store",
+    "pages": [
+      "Home",
+      "Paintings",
+      "Crafts"
+    ],
+    "BottomTabData": [
+      {
+        "name": "man",
+        "size": 22,
+        "Page": "Home",
+        "id": "de75"
+      },
+      {
+        "name": "color-lens",
+        "size": 22,
+        "Page": "Painting",
+        "id": "18f5"
+      },
+      {
+        "name": "scissors",
+        "size": 22,
+        "Page": "scissors",
+        "id": "cc4a"
+      },
+      {
+        "name": "user-circle",
+        "size": 22,
+        "Page": "User",
+        "id": "391c"
+      }
+    ],
+    "__v": 6
+  }
+}

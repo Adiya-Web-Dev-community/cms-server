@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const productPageSchema = new mongoose.Schema({
   title: String,
@@ -19,5 +19,5 @@ const productPageSchema = new mongoose.Schema({
   ],
 });
 
-const PageModel = mongoose.model('page', productPageSchema);
+const PageModel = mongoose.model("page", productPageSchema);
 module.exports = PageModel;

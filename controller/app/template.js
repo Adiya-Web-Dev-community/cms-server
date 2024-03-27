@@ -125,6 +125,20 @@ const fetchTemplate = async (req, res) => {
   }
 };
 
+//fetch all templates
+const fetchAllTemplates = async (req, res) => {
+  try {
+    const allTemplates = await Template.find({});
+    return res.send({
+      success: true,
+      msg: "all templates fetch successfully",
+      list: allTemplates,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `error ${err.message}` });
+  }
+};
+
 module.exports = {
   createTemplate,
   createNewPage,
@@ -132,4 +146,5 @@ module.exports = {
   insertPageData,
   fetchPagesOfTemplate,
   fetchTemplate,
+  fetchAllTemplates,
 };

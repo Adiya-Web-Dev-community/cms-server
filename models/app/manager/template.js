@@ -57,7 +57,9 @@ const mongoose = require("mongoose");
 
 // Define main schema
 const templateSchema = new mongoose.Schema({
-  templateName: String,
+  category:{type:String},
+  templateName: {type:String},
+  appIcon:{type:String},
   pages: [],
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
   user: {},

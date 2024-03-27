@@ -3,9 +3,15 @@ const Page = require("../../models/app/manager/templatePage");
 
 //create template
 const createTemplate = async (req, res) => {
-  const { templateName } = req.body;
+  const { templateName, category } = req.body;
   if (!templateName) {
     return res.send({ success: false, msg: "Template name cannot be empty!" });
+  }
+  if (!category) {
+    return res.send({
+      success: false,
+      msg: "Please select category to cretae new template",
+    });
   }
   try {
     //create template
@@ -144,6 +150,25 @@ const fetchAllTemplates = async (req, res) => {
   }
 };
 
+//fetch templates as per category
+const fetchTemplatesByCategory = async (req, res) => {
+  const { category } = req.params;
+  if (!category) {
+    return res.send({ success: false, msg: "Catgeory not selected!" });
+  }
+
+  try {
+    const allTemplates = await Template.find({ category: category });
+    return res.send({
+      success: true,
+      msg: "List of templates fetched successfully",
+      list: allTemplates,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `error: ${err.message}` });
+  }
+};
+
 module.exports = {
   createTemplate,
   createNewPage,
@@ -152,4 +177,5 @@ module.exports = {
   fetchPagesOfTemplate,
   fetchTemplate,
   fetchAllTemplates,
+  fetchTemplatesByCategory,
 };

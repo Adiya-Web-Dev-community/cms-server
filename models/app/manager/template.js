@@ -60,6 +60,7 @@ const templateSchema = new mongoose.Schema({
   templateName: String,
   pages: [],
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
+  user: {},
 });
 
 // Create and export the model

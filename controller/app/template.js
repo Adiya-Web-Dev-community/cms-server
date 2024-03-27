@@ -16,7 +16,7 @@ const createTemplate = async (req, res) => {
       templateId: newTemplate._id,
     });
     //add home page to template
-    newTemplate.pages.push("Home");
+    newTemplate.pages.push({ title: "Home", id: newPage._id });
     await newTemplate.save();
     return res.send({
       success: true,
@@ -115,10 +115,15 @@ const fetchTemplate = async (req, res) => {
     if (!isTemplate) {
       return res.send({ success: false, msg: "Template not found" });
     }
+    const populateTemplate = await Template.findOne({ _id: id }).populate({
+      path: "pages",
+      select: "-templateId", // Exclude the templateId field from the populated data
+    });
     return res.send({
-      success: true,
-      msg: "Template data fetch successfully",
-      data: isTemplate,
+      // success: true,
+      // msg: "Template data fetch successfully",
+      // data: isTemplate,
+      populateTemplate,
     });
   } catch (err) {
     return res.send({ success: false, msg: `catch error: ${err.message}` });

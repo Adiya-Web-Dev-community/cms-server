@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const templatePageSchema = new mongoose.Schema({
   title: String,
-  data: [{ type: mongoose.Schema.Types.Mixed }],
+  data: { type: Array },
   templateId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "app-template",

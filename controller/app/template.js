@@ -82,14 +82,40 @@ const addBottomData = async (req, res) => {
 
 //insert page data
 const insertPageData = async (req, res) => {
-  const { templateId, pageId, data } = req.body;
+  const { templateId, pageId, insertData } = req.body;
+  const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
   try {
     const isPage = await Page.findOne({
       $and: [{ templateId: templateId }, { _id: pageId }],
     });
-    isPage.data = data;
+    for (let obj of insertData) {
+      isPage.data.push({ ...obj, id: randomId });
+    }
     await isPage.save();
-    return res.send({ templateId, pageId, isPage });
+    return res.send({
+      templateId,
+      pageId,
+      isPage,
+      length: isPage.data.length,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `error:${err.message}` });
+  }
+};
+
+//insert list item
+const insertListItem = async (req, res) => {
+  const { pageId, listItemId, listItemData } = req.body;
+  try {
+    const isPage = await Page.findOne({ _id: pageId });
+    const dataArr = isPage?.data;
+    for (let obj of dataArr) {
+      if (obj.id === listItemId) {
+        obj.ListItems.push(listItemData);
+      }
+    }
+    await isPage.save();
+    return res.send(isPage.data);
   } catch (err) {
     return res.send({ success: false, msg: `error:${err.message}` });
   }
@@ -174,6 +200,7 @@ module.exports = {
   createNewPage,
   addBottomData,
   insertPageData,
+  insertListItem,
   fetchPagesOfTemplate,
   fetchTemplate,
   fetchAllTemplates,

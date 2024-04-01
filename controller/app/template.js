@@ -105,12 +105,12 @@ const insertPageData = async (req, res) => {
 
 //insert list item
 const insertListItem = async (req, res) => {
-  const { pageId, listItemId, listItemData } = req.body;
+  const { pageId, subDataId, listItemData } = req.body;
   try {
     const isPage = await Page.findOne({ _id: pageId });
     const dataArr = isPage?.data;
     for (let obj of dataArr) {
-      if (obj.id === listItemId) {
+      if (obj.id === subDataId) {
         obj.ListItems.push(listItemData);
       }
     }

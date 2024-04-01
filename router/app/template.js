@@ -10,6 +10,7 @@ const {
   insertListItem,
   fetchAllTemplates,
   fetchTemplatesByCategory,
+  changePageName,
 } = require("../../controller/app/template");
 
 router.post("/create-template", createTemplate);
@@ -21,5 +22,6 @@ router.post("/insert-page-data", insertPageData);
 router.post("/insert-list-item", insertListItem);
 router.get("/fetch-all-templates", fetchAllTemplates);
 router.get("/fetch-templates-by-category/:category", fetchTemplatesByCategory);
+router.patch("/change-page-name/:pageId", changePageName);
 
 module.exports = router;

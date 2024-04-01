@@ -195,6 +195,33 @@ const fetchTemplatesByCategory = async (req, res) => {
   }
 };
 
+//change page name
+const changePageName = async (req, res) => {
+  const { pageId } = req.params;
+  if (!pageId) {
+    return res.send({ success: false, msg: `Cannot find pageId` });
+  }
+  const { title } = req.body;
+  if (!title || title === "") {
+    return res.send({ success: false, msg: "Page title cannot be empty" });
+  }
+
+  try {
+    const isPage = await Page.findOneAndUpdate(
+      { _id: pageId },
+      { title: title },
+      { new: true }
+    );
+    return res.send({
+      success: true,
+      msg: "Page title successfully changed",
+      isPage,
+    });
+  } catch (err) {
+    return res.send({ success: true, msg: `error : ${err.message}` });
+  }
+};
+
 module.exports = {
   createTemplate,
   createNewPage,
@@ -205,4 +232,5 @@ module.exports = {
   fetchTemplate,
   fetchAllTemplates,
   fetchTemplatesByCategory,
+  changePageName,
 };

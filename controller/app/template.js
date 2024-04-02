@@ -112,11 +112,7 @@ const insertListItem = async (req, res) => {
       $push: { "data.$.ListItems": listItemData },
     };
     const options = { new: true };
-    const updatedPage = await pageSample.findOneAndUpdate(
-      filter,
-      update,
-      options
-    );
+    const updatedPage = await Page.findOneAndUpdate(filter, update, options);
     if (!updatedPage) {
       return res
         .status(404)

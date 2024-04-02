@@ -83,12 +83,12 @@ const addBottomData = async (req, res) => {
 //insert page data
 const insertPageData = async (req, res) => {
   const { templateId, pageId, insertData } = req.body;
+  const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
   try {
     const isPage = await Page.findOne({
       $and: [{ templateId: templateId }, { _id: pageId }],
     });
     for (let obj of insertData) {
-      const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
       isPage.data.push({ ...obj, id: randomId });
     }
     await isPage.save();
@@ -106,28 +106,30 @@ const insertPageData = async (req, res) => {
 //insert list item
 const insertListItem = async (req, res) => {
   const { pageId, subDataId, listItemData } = req.body;
-  console.log(listItemData);
+
   try {
-    const isPage = await Page.findOne({ _id: pageId });
-    let found = false;
-    for (let obj of isPage?.data) {
-      if (obj.id === subDataId) {
-        console.log("before", obj.ListItems);
-        obj?.ListItems.push({ listItemData });
-        console.log("after", obj.ListItems);
-        found = true;
-        break;
-      }
+    const filter = { _id: pageId, "data.id": subDataId };
+    const update = {
+      $push: { "data.$.ListItems": listItemData },
+    };
+    const options = { new: true };
+    const updatedPage = await pageSample.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    if (!updatedPage) {
+      return res
+        .status(404)
+        .send({ success: false, msg: "Page or Subdata not found" });
     }
 
-    if (!found) {
-      return res.send({ success: false, msg: "Subdata not found" });
-    }
-    const updatedPageData = await isPage.save();
-    // console.log(updatedPageData.data);
-    return res.send(isPage);
+    return res.send(updatedPage);
   } catch (err) {
-    return res.send({ success: false, msg: `error:${err.message}` });
+    console.error("Error inserting list item:", err);
+    return res
+      .status(500)
+      .send({ success: false, msg: "Internal server error" });
   }
 };
 
@@ -237,33 +239,6 @@ const addUpdateListItemData = async (req, res) => {
   console.log(req.params.pageId);
 };
 
-const Student = require("../../models/s");
-const School = require("../../models/s");
-
-const createSchool = async (req, res) => {
-  const newSchool = await School.create(req.body);
-  console.log(newSchool);
-  return res.send(newSchool);
-};
-const newStudent = async (req, res) => {
-  try {
-    const { name, age, gender, schoolId } = req.body;
-
-    // Create a new student
-    const newStudent = await Student.create({ name, age, gender });
-
-    // Add the student's ID to the corresponding school
-    await School.findByIdAndUpdate(schoolId, {
-      $push: { studentsId: newStudent._id },
-    });
-
-    res.status(201).json({ success: true, data: newStudent });
-  } catch (error) {
-    console.error("Error creating student:", error);
-    res.status(500).json({ success: false, error: "Internal Server Error" });
-  }
-};
-
 module.exports = {
   createTemplate,
   createNewPage,
@@ -276,7 +251,4 @@ module.exports = {
   fetchTemplatesByCategory,
   changePageName,
   addUpdateListItemData,
-
-  createSchool,
-  newStudent,
 };

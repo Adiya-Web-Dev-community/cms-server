@@ -12,9 +12,6 @@ const {
   fetchTemplatesByCategory,
   changePageName,
   addUpdateListItemData,
-
-  createSchool,
-  newStudent,
 } = require("../../controller/app/template");
 
 router.post("/create-template", createTemplate);
@@ -28,8 +25,5 @@ router.get("/fetch-all-templates", fetchAllTemplates);
 router.get("/fetch-templates-by-category/:category", fetchTemplatesByCategory);
 router.patch("/change-page-name/:pageId", changePageName);
 router.put("/add-update-list-data/:pageId/", addUpdateListItemData);
-
-router.post("/create-school", createSchool);
-router.post("/student", newStudent);
 
 module.exports = router;

@@ -106,7 +106,6 @@ const insertPageData = async (req, res) => {
 //insert list item
 const insertListItem = async (req, res) => {
   const { pageId, subDataId, listItemData } = req.body;
-
   try {
     const filter = { _id: pageId, "data.id": subDataId };
     const update = {
@@ -126,10 +125,9 @@ const insertListItem = async (req, res) => {
 
     return res.send(updatedPage);
   } catch (err) {
-    console.error("Error inserting list item:", err);
     return res
       .status(500)
-      .send({ success: false, msg: "Internal server error" });
+      .send({ success: false, msg: `error: ${err.message}` });
   }
 };
 

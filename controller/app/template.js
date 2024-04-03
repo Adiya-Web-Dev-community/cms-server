@@ -2,6 +2,39 @@ const Template = require("../../models/app/manager/template");
 const Page = require("../../models/app/manager/templatePage");
 
 //create template
+// const createTemplate = async (req, res) => {
+//   const { templateName, category } = req.body;
+//   if (!templateName) {
+//     return res.send({ success: false, msg: "Template name cannot be empty!" });
+//   }
+//   if (!category) {
+//     return res.send({
+//       success: false,
+//       msg: "Please select category to cretae new template",
+//     });
+//   }
+//   try {
+//     //create template
+//     const newTemplate = await Template.create(req.body);
+//     //create page
+//     const newPage = await Page.create({
+//       title: "Home",
+//       templateId: newTemplate._id,
+//     });
+//     //add home page to template
+//     newTemplate.pages.push({ title: "Home", id: newPage._id });
+//     await newTemplate.save();
+//     return res.send({
+//       success: true,
+//       msg: "New template and default home page created",
+//       newTemplate,
+//       newPage,
+//     });
+//   } catch (err) {
+//     return res.send({ success: false, msg: ` error:${err.message}` });
+//   }
+// };
+
 const createTemplate = async (req, res) => {
   const { templateName, category } = req.body;
   if (!templateName) {
@@ -21,9 +54,11 @@ const createTemplate = async (req, res) => {
       title: "Home",
       templateId: newTemplate._id,
     });
-    //add home page to template
-    newTemplate.pages.push({ title: "Home", id: newPage._id });
+
+    //add home page ID to template
+    newTemplate.pages.push(newPage._id);
     await newTemplate.save();
+
     return res.send({
       success: true,
       msg: "New template and default home page created",
@@ -53,7 +88,8 @@ const createNewPage = async (req, res) => {
       ...req.body,
       templateId: templateId,
     });
-    isTemplate.pages.push({ title: title, id: newPage._id });
+    //add home page ID to template
+    isTemplate.pages.push(newPage._id);
     await isTemplate.save();
     return res.send({ success: true, msg: "New page created", newPage });
   } catch (err) {
@@ -149,19 +185,15 @@ const fetchTemplate = async (req, res) => {
     return res.send({ success: false, msg: "template id not found" });
   }
   try {
-    const isTemplate = await Template.findOne({ _id: id });
+    const isTemplate = await Template.findOne({ _id: id }).populate("pages");
     if (!isTemplate) {
       return res.send({ success: false, msg: "Template not found" });
     }
-    const populateTemplate = await Template.findOne({ _id: id }).populate({
-      path: "pages",
-      select: "-templateId", // Exclude the templateId field from the populated data
-    });
+
     return res.send({
-      // success: true,
-      // msg: "Template data fetch successfully",
-      // data: isTemplate,
-      populateTemplate,
+      success: true,
+      msg: "Template data fetch successfully",
+      isTemplate,
     });
   } catch (err) {
     return res.send({ success: false, msg: `catch error: ${err.message}` });
@@ -229,7 +261,7 @@ const changePageName = async (req, res) => {
 };
 
 //add/ update list item data
-const addUpdateListItemData = async (req, res) => {
+const updateListItemData = async (req, res) => {
   console.log(req.params.pageId);
 };
 
@@ -244,5 +276,5 @@ module.exports = {
   fetchAllTemplates,
   fetchTemplatesByCategory,
   changePageName,
-  addUpdateListItemData,
+  updateListItemData,
 };

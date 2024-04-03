@@ -60,7 +60,7 @@ const templateSchema = new mongoose.Schema({
   category: { type: String },
   templateName: { type: String },
   appIcon: { type: String },
-  pages: [],
+  pages: [{ type: mongoose.Schema.Types.ObjectId, ref: "template-page" }], // Check this line
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
 });
 

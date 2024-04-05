@@ -12,7 +12,8 @@ const {
 } = require("../../controller/app/user");
 
 router.get("/fetch-user-projects", middleware, fetchAllUserProjects);
-router.post("/create-blank-project",middleware, createBlankProject);
+//? router.post("/create-blank-project",middleware, createBlankProject); //check later token not wokring for native developer
+router.post("/create-blank-project", createBlankProject);
 router.get("/create-project-from-template", middleware, createBlankProject);
 router.post("/create-new-project-page/:projectId", createNewProjectPage);
 router.get("/fetch-project/:projectId", fetchProject);

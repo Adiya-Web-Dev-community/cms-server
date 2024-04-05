@@ -13,8 +13,46 @@ const fetchAllUserProjects = async (req, res) => {
 };
 
 //create blank project
+// const createBlankProject = async (req, res) => {
+//   const { projectName, category } = req.body;
+//   if (!projectName) {
+//     return res.send({ success: false, msg: "Project name cannot be empty!" });
+//   }
+//   if (!category) {
+//     return res.send({
+//       success: false,
+//       msg: "Please select category to cretae new template",
+//     });
+//   }
+//   try {
+//     //create template
+//     const newProject = await UserProject.create({
+//       ...req.body,
+//       userId: req.accountId,
+//     });
+//     //create default home page
+//     const newPage = await UserProjectPage.create({
+//       title: "Home",
+//       projectId: newProject._id,
+//     });
+
+//     //add home page ID to template
+//     newProject.pages.push(newPage._id);
+//     await newProject.save();
+
+//     return res.send({
+//       success: true,
+//       msg: "New project and default home page created",
+//       newProject,
+//       newPage,
+//     });
+//   } catch (err) {
+//     return res.send({ success: false, msg: `catch error:${err.message}` });
+//   }
+// };
+
 const createBlankProject = async (req, res) => {
-  const { projectName, category } = req.body;
+  const { projectName, category, userId } = req.body;
   if (!projectName) {
     return res.send({ success: false, msg: "Project name cannot be empty!" });
   }
@@ -24,11 +62,17 @@ const createBlankProject = async (req, res) => {
       msg: "Please select category to cretae new template",
     });
   }
+  if (!userId) {
+    return res.send({
+      success: false,
+      msg: "User Id not found",
+    });
+  }
   try {
     //create template
     const newProject = await UserProject.create({
       ...req.body,
-      userId: req.accountId,
+      userId: userId,
     });
     //create default home page
     const newPage = await UserProjectPage.create({

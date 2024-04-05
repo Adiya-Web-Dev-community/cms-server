@@ -4,8 +4,12 @@ const UserProjectPage = require("../../models/app/user/project-page");
 
 //fetch all project of individual user
 const fetchAllUserProjects = async (req, res) => {
+  const { userId } = req.params;
+  if (!userId) {
+    return res.send({ success: false, msg: "User Id not found" });
+  }
   try {
-    const allProjects = await UserProject.find({ userId: req.accountId });
+    const allProjects = await UserProject.find({ userId:userId });
     return res.send({ list: allProjects, listLength: allProjects.length });
   } catch (err) {
     return res.send({ success: true, msg: `error: ${err.message}` });
@@ -96,8 +100,38 @@ const createBlankProject = async (req, res) => {
 };
 
 //create project from template
+// const createProjectFromTemplate = async (req, res) => {
+//   const { originalTemplateId } = req.body;
+
+//   //find original template first
+//   const originalTemplate = await Template.findOne({
+//     _id: originalTemplateId,
+//   }).populate("pages");
+
+//   //create new project for user by taking reference of template
+//   const newProject = new UserProject({
+//     projectName: originalTemplate.templateName,
+//     category: originalTemplate.category,
+//     appIcon: originalTemplate.appIcon,
+//     BottomTabData: originalTemplate.BottomTabData,
+//     userId: req.accountId,
+//     pages: [],
+//   });
+//   await newProject.save();
+
+//   for (let page of originalTemplate.pages) {
+//     const newPage = await UserProjectPage.create({
+//       title: page.title,
+//       data: page.data,
+//       projectId: newProject._id,
+//     });
+//     newProject.pages.push(newPage._id);
+//     await newProject.save();
+//   }
+//   return res.send({ newProject });
+// };
 const createProjectFromTemplate = async (req, res) => {
-  const { originalTemplateId } = req.body;
+  const { originalTemplateId, userId } = req.body;
 
   //find original template first
   const originalTemplate = await Template.findOne({
@@ -110,7 +144,7 @@ const createProjectFromTemplate = async (req, res) => {
     category: originalTemplate.category,
     appIcon: originalTemplate.appIcon,
     BottomTabData: originalTemplate.BottomTabData,
-    userId: req.accountId,
+    userId: userId,
     pages: [],
   });
   await newProject.save();
@@ -162,9 +196,9 @@ const fetchProject = async (req, res) => {
     return res.send({ success: false, msg: "Project id not found" });
   }
   try {
-    const isProject = await UserProject.findOne({ _id: projectId }).populate(
-      "pages"
-    );
+    const isProject = await UserProject.findOne({ _id: projectId })
+      .populate("userId")
+      .populate("pages");
     if (!isProject) {
       return res.send({ success: false, msg: "Project not found" });
     }

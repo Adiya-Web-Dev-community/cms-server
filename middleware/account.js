@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const accountMiddleware = (req, resp, next) => {
   const token = req.headers.authorization;
-
   try {
     if (token) {
       const { _id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -20,6 +19,7 @@ const accountMiddleware = (req, resp, next) => {
     resp.json({
       success: false,
       message: `middleware catch err ${err.message}`,
+      token: token,
     });
   }
 };

@@ -10,7 +10,7 @@ const {
   changePageTitle,
 } = require("../../controller/app/user");
 
-router.get("/fetch-user-projects", fetchAllUserProjects);
+router.get("/fetch-user-projects", middleware,fetchAllUserProjects);
 router.post("/create-blank-project",  middleware, createBlankProject);
 router.get("/create-project-from-template", middleware, createBlankProject);
 router.post("/create-new-project-page/:projectId", createNewProjectPage);

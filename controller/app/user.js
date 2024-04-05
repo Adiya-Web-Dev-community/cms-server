@@ -29,7 +29,6 @@ const createBlankProject = async (req, res) => {
     //create template
     const newProject = await UserProject.create({
       ...req.body,
-      userId: req.accountId,
     });
     //create default home page
     const newPage = await UserProjectPage.create({

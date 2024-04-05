@@ -189,6 +189,11 @@ const changePageTitle = async (req, res) => {
   }
 };
 
+//delete subData
+const deleteSubData = async (req, res) => {
+  console.log(deleteSubData);
+};
+
 module.exports = {
   fetchAllUserProjects,
   createBlankProject,
@@ -197,4 +202,5 @@ module.exports = {
   fetchProject,
   changeProjectData,
   changePageTitle,
+  deleteSubData,
 };

@@ -14,7 +14,6 @@ const fetchAllUserProjects = async (req, res) => {
 
 //create blank project
 const createBlankProject = async (req, res) => {
-  console.log(req.accountId);
   const { projectName, category } = req.body;
   if (!projectName) {
     return res.send({ success: false, msg: "Project name cannot be empty!" });

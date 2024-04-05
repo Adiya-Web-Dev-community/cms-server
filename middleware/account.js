@@ -16,7 +16,10 @@ const accountMiddleware = (req, resp, next) => {
         .json({ success: false, message: "token expired, access denied" });
     }
   } catch (err) {
-    resp.json({ success: false, message: err });
+    resp.json({
+      success: false,
+      message: `middleware catch err ${err.message}`,
+    });
   }
 };
 

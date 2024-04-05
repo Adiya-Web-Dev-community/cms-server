@@ -30,7 +30,8 @@ app.use(require("./router/web/accountRouter"));
 app.use(require("./router/web/productRouter"));
 app.use(require("./router/web/templateRouter"));
 app.use(require("./router/appDev/nativeProductRoute"));
-
+//user
+app.use(require("./router/app/user"));
 //app
 app.use(require("./router/app/template"));
 

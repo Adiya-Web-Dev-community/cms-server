@@ -84,7 +84,7 @@ const createNewPage = async (req, res) => {
   try {
     //find template by id
     const isTemplate = await Template.findOne({ _id: templateId });
-    console.log(isTemplate)
+    console.log(isTemplate);
     const newPage = await Page.create({
       ...req.body,
       templateId: templateId,

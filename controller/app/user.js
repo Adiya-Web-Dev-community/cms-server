@@ -14,6 +14,7 @@ const fetchAllUserProjects = async (req, res) => {
 
 //create blank project
 const createBlankProject = async (req, res) => {
+  console.log(req.accountId);
   const { projectName, category } = req.body;
   if (!projectName) {
     return res.send({ success: false, msg: "Project name cannot be empty!" });
@@ -47,7 +48,7 @@ const createBlankProject = async (req, res) => {
       newPage,
     });
   } catch (err) {
-    return res.send({ success: false, msg: ` error:${err.message}` });
+    return res.send({ success: false, msg: `catch error:${err.message}` });
   }
 };
 

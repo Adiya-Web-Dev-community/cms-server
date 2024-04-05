@@ -2,8 +2,57 @@ const Template = require("../../models/app//manager/template");
 const UserProject = require("../../models/app/user/project");
 const UserProjectPage = require("../../models/app/user/project-page");
 
-//create project
-const createProject = async (req, res) => {
+//fetch all project of individual user
+const fetchAllUserProjects = async (req, res) => {
+  try {
+    const allProjects = await UserProject.find({ userId: req.accountId });
+    return res.send({ list: allProjects, listLength: allProjects.length });
+  } catch (err) {
+    return res.send({ success: true, msg: `error: ${err.message}` });
+  }
+};
+
+//create blank project
+const createBlankProject = async (req, res) => {
+  const { projectName, category } = req.body;
+  if (!projectName) {
+    return res.send({ success: false, msg: "Project name cannot be empty!" });
+  }
+  if (!category) {
+    return res.send({
+      success: false,
+      msg: "Please select category to cretae new template",
+    });
+  }
+  try {
+    //create template
+    const newProject = await UserProject.create({
+      ...req.body,
+      userId: req.accountId,
+    });
+    //create default home page
+    const newPage = await UserProjectPage.create({
+      title: "Home",
+      projectId: newProject._id,
+    });
+
+    //add home page ID to template
+    newProject.pages.push(newPage._id);
+    await newProject.save();
+
+    return res.send({
+      success: true,
+      msg: "New project and default home page created",
+      newProject,
+      newPage,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: ` error:${err.message}` });
+  }
+};
+
+//create project from template
+const createProjectFromTemplate = async (req, res) => {
   const { originalTemplateId } = req.body;
 
   //find original template first
@@ -17,7 +66,7 @@ const createProject = async (req, res) => {
     category: originalTemplate.category,
     appIcon: originalTemplate.appIcon,
     BottomTabData: originalTemplate.BottomTabData,
-    originalTemplateId: originalTemplateId,
+    userId: req.accountId,
     pages: [],
   });
   await newProject.save();
@@ -35,7 +84,7 @@ const createProject = async (req, res) => {
 };
 
 //create new page
-const createNewPage = async (req, res) => {
+const createNewProjectPage = async (req, res) => {
   const { projectId } = req.params;
   if (!projectId) {
     return res.send({ success: false, msg: "Cannot find project id" });
@@ -114,7 +163,7 @@ const changeProjectData = async (req, res) => {
 };
 
 //change page name
-const changePageName = async (req, res) => {
+const changePageTitle = async (req, res) => {
   const { pageId } = req.params;
   if (!pageId) {
     return res.send({ success: false, msg: `Cannot find pageId` });
@@ -141,9 +190,11 @@ const changePageName = async (req, res) => {
 };
 
 module.exports = {
-  createProject,
-  createNewPage,
+  fetchAllUserProjects,
+  createBlankProject,
+  createProjectFromTemplate,
+  createNewProjectPage,
   fetchProject,
   changeProjectData,
-  changePageName,
+  changePageTitle,
 };

@@ -7,8 +7,7 @@ const templateSchema = new mongoose.Schema({
   appIcon: { type: String },
   pages: [{ type: mongoose.Schema.Types.ObjectId, ref: "user-project-page" }], // Check this line
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
-  originalTemplateId: { type: mongoose.Schema.Types.ObjectId, ref: "template" },
-  // userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 
 // Create and export the model

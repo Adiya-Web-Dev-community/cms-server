@@ -1,17 +1,22 @@
 const router = require("express").Router();
+const middleware = require("../../middleware/account");
+
 const {
-  createProject,
-  createNewPage,
+  fetchAllUserProjects,
+  createBlankProject,
+  createNewProjectPage,
   fetchProject,
   changeProjectData,
-  changePageName,
+  changePageTitle,
 } = require("../../controller/app/user");
 
-router.get("/create-project", createProject);
-router.post("/create-new-page/:projectId", createNewPage);
+router.get("/fetch-user-projects", fetchAllUserProjects);
+router.post("/create-blank-project",  middleware, createBlankProject);
+router.get("/create-project-from-template", middleware, createBlankProject);
+router.post("/create-new-project-page/:projectId", createNewProjectPage);
 router.get("/fetch-project/:projectId", fetchProject);
 router.patch("/change-project-data/:projectId", changeProjectData);
-router.patch("/change-page-name/:pageId", changePageName);
+router.patch("/change-page-title/:pageId", changePageTitle);
 
 // router.post("/addBottomData/:templateId", addBottomData);
 // router.get("/fetch-pages/:templateId", fetchPagesOfTemplate);

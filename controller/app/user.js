@@ -230,20 +230,22 @@ const changePageTitle = async (req, res) => {
 //insert page data
 const insertPageData = async (req, res) => {
   const { projectId, pageId, insertData } = req.body;
-  const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
   try {
     const isPage = await UserProjectPage.findOne({
       $and: [{ projectId: projectId }, { _id: pageId }],
     });
     for (let obj of insertData) {
-      isPage.data.push({ ...obj, id: randomId });
-      await isPage.save();
+      const randomIdForSubData =
+        Math.floor(Math.random() * (99999999 - 10 + 1)) + 10;
 
-      // if (obj.ListItems) {
-      //   for(let subListItem of obj.ListItems){
-      //     subListItem.id=
-      //   }
-      // }
+      isPage.data.push({ ...obj, id: randomIdForSubData });
+      if (obj.ListItems) {
+        for (let subListItem of obj.ListItems) {
+          const randomIdForListItem =
+            Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
+          subListItem.id = randomIdForListItem;
+        }
+      }
     }
     await isPage.save();
     return res.send({
@@ -337,17 +339,17 @@ const insertListItem = async (req, res) => {
 
 //delete list item
 const deleteListItem = async (req, res) => {
-  const { pageId, subDataId, deleteData } = req.body;
+  const { pageId, subDataId, listItemId } = req.body;
   if (!pageId || !subDataId) {
     return res.send({
       success: false,
       msg: "page id / sub data is cannot found in req.body",
     });
   }
-  if (!deleteData) {
+  if (!listItemId) {
     return res.send({
       success: false,
-      msg: "Cannot find data that is to be deleted",
+      msg: "Cannot find list item Id that is to be deleted",
     });
   }
 
@@ -355,7 +357,7 @@ const deleteListItem = async (req, res) => {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
 
     let subData = isPage.data.find((obj) => obj.id === subDataId);
-    let arr = subData.ListItems.filter((obj) => obj.title != deleteData.title);
+    let arr = subData.ListItems.filter((obj) => obj.id != listItemId);
     subData.ListItems = arr;
     await isPage.save();
 
@@ -367,7 +369,39 @@ const deleteListItem = async (req, res) => {
 
 //modify list item field
 const modifyListItemFields = async (req, res) => {
-  const { pageId, subDataId } = req.body;
+  const { pageId, subDataId, listItemId, updateData } = req.body;
+  if (!pageId || !subDataId || !listItemId) {
+    return res.send({
+      success: false,
+      msg: "Check if pageId, subDataId and list item id all are sent propely in req.body",
+    });
+  }
+
+  try {
+    let isPage = await UserProjectPage.findOne({ _id: pageId });
+    let subDataObj = isPage.data.find((obj) => obj.id === subDataId);
+    let listItemObj = subDataObj.ListItems.find((obj) => obj.id === listItemId);
+    for (var keyOFListItem in listItemObj) {
+      for (var keyOfUpdateItem in updateData) {
+        if (keyOFListItem === keyOfUpdateItem) {
+          listItemObj[keyOFListItem] = updateData[keyOfUpdateItem];
+        }
+      }
+    }
+    subDataObj.ListItems.find((obj) => {
+      if (obj.id === listItemId) {
+        obj = listItemObj;
+      }
+    });
+    await isPage.save();
+    return res.send({
+      success: true,
+      msg: "data updated successfully",
+      updatedPage: isPage,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `error: ${err.message}` });
+  }
 };
 
 module.exports = {

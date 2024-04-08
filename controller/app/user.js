@@ -185,6 +185,21 @@ const createNewProjectPage = async (req, res) => {
   }
 };
 
+//get list items of page.data
+const fetchListItemsOfPageData = async (req, res) => {
+  const { pageId } = req.params;
+  if (!pageId) {
+    return res.send({ success: false, msg: "Cannot find page id" });
+  }
+
+  try {
+    const isPage = await UserProjectPage.findOne({ _id: pageId });
+    return res.send({ success: true, listItems: isPage.data.ListItems });
+  } catch (err) {
+    return res.send({ success: false, msg: `error : ${err.message}` });
+  }
+};
+
 //change page name
 const changePageTitle = async (req, res) => {
   const { pageId } = req.params;
@@ -222,6 +237,13 @@ const insertPageData = async (req, res) => {
     });
     for (let obj of insertData) {
       isPage.data.push({ ...obj, id: randomId });
+      await isPage.save();
+
+      // if (obj.ListItems) {
+      //   for(let subListItem of obj.ListItems){
+      //     subListItem.id=
+      //   }
+      // }
     }
     await isPage.save();
     return res.send({
@@ -313,17 +335,55 @@ const insertListItem = async (req, res) => {
   }
 };
 
+//delete list item
+const deleteListItem = async (req, res) => {
+  const { pageId, subDataId, deleteData } = req.body;
+  if (!pageId || !subDataId) {
+    return res.send({
+      success: false,
+      msg: "page id / sub data is cannot found in req.body",
+    });
+  }
+  if (!deleteData) {
+    return res.send({
+      success: false,
+      msg: "Cannot find data that is to be deleted",
+    });
+  }
+
+  try {
+    const isPage = await UserProjectPage.findOne({ _id: pageId });
+
+    let subData = isPage.data.find((obj) => obj.id === subDataId);
+    let arr = subData.ListItems.filter((obj) => obj.title != deleteData.title);
+    subData.ListItems = arr;
+    await isPage.save();
+
+    return res.send(isPage);
+  } catch (err) {
+    return res.send({ success: false, msg: `error : ${err.message}` });
+  }
+};
+
+//modify list item field
+const modifyListItemFields = async (req, res) => {
+  const { pageId, subDataId } = req.body;
+};
+
 module.exports = {
   fetchAllUserProjects,
+  fetchProject,
   createBlankProject,
   createProjectFromTemplate,
+  addBottomData,
+  changeProjectData,
   createNewProjectPage,
+  fetchListItemsOfPageData,
   insertPageData,
+  changePageTitle,
   deletePageData,
   modifyDataTitleAndImage,
   insertListItem,
-  fetchProject,
-  changeProjectData,
-  changePageTitle,
-  addBottomData,
+  deleteListItem,
+  modifyListItemFields,
 };

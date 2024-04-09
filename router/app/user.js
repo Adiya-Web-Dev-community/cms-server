@@ -33,7 +33,7 @@ router.post("/addBottomData/:projectId", addBottomData);
 router.patch("/change-project-data/:projectId", changeProjectData);
 //page data apis
 router.post("/create-new-project-page/:projectId", createNewProjectPage);
-router.get("/fetch-listItems/:pageId", fetchListItemsOfPageData)
+router.get("/fetch-listItems/:pageId/:subDataId", fetchListItemsOfPageData)
 router.post("/insert-project-page-data", insertPageData);
 router.patch("/change-page-title/:pageId", changePageTitle);
 router.delete("/delete-page-data", deletePageData);

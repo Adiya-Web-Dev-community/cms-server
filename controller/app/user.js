@@ -187,14 +187,28 @@ const createNewProjectPage = async (req, res) => {
 
 //get list items of page.data
 const fetchListItemsOfPageData = async (req, res) => {
-  const { pageId } = req.params;
+  const { pageId, subDataId } = req.params;
+  console.log(typeof subDataId);
   if (!pageId) {
     return res.send({ success: false, msg: "Cannot find page id" });
   }
 
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
-    return res.send({ success: true, listItems: isPage.data.ListItems });
+    let subDataObj = {};
+    for (let obj of isPage.data) {
+      if (obj.id === Number(subDataId)) {
+        subDataObj = obj;
+      }
+    }
+    if (!subDataObj.ListItems) {
+      return res.send({
+        success: false,
+        msg: "No list item present for this data",
+      });
+    }
+
+    return res.send({ success: true, listItems: subDataObj.ListItems });
   } catch (err) {
     return res.send({ success: false, msg: `error : ${err.message}` });
   }

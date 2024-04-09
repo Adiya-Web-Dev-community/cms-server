@@ -188,7 +188,6 @@ const createNewProjectPage = async (req, res) => {
 //get list items of page.data
 const fetchListItemsOfPageData = async (req, res) => {
   const { pageId, subDataId } = req.params;
-  console.log(typeof subDataId);
   if (!pageId) {
     return res.send({ success: false, msg: "Cannot find page id" });
   }

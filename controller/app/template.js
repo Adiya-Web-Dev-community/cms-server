@@ -164,6 +164,26 @@ const insertListItem = async (req, res) => {
   }
 };
 
+const fetchListItemsOfPageData = async (req, res) => {
+  const { pageId, subDataId } = req.query;
+  try {
+    const item = await Page.findOne({
+      _id: pageId,
+     
+    })//.data.find(el=>el.id===id)
+
+    const data =item.data.find(el=>el.id===Number(subDataId))
+    return res.status(200).json({
+      success: true,
+      msg: "Successfully fetched list items",
+      data,
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, msg: `error: ${err.message}` });
+  }
+};
+
+
 //get all pages of template
 const fetchPagesOfTemplate = async (req, res) => {
   const { templateId } = req.params;
@@ -278,4 +298,5 @@ module.exports = {
   fetchTemplatesByCategory,
   changePageName,
   updateListItemData,
+  fetchListItemsOfPageData,
 };

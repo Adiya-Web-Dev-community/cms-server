@@ -194,6 +194,7 @@ const fetchListItemsOfPageData = async (req, res) => {
 
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
+    console.log(isPage);
     let subDataObj = {};
     for (let obj of isPage.data) {
       if (obj.id === Number(subDataId)) {

@@ -118,20 +118,49 @@ const addBottomData = async (req, res) => {
 };
 
 //insert page data
+// const insertPageData = async (req, res) => {
+//   const { templateId, pageId, insertData } = req.body;
+//   try {
+//     const isPage = await Page.findOne({
+//       $and: [{ templateId: templateId }, { _id: pageId }],
+//     });
+//     for (let obj of insertData) {
+//       const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
+//       isPage.data.push({ ...obj, id: randomId });
+//     }
+//     await isPage.save();
+//     return res.send({
+//       templateId,
+//       pageId,
+//       isPage,
+//       length: isPage.data.length,
+//     });
+//   } catch (err) {
+//     return res.send({ success: false, msg: `error:${err.message}` });
+//   }
+// };
 const insertPageData = async (req, res) => {
   const { templateId, pageId, insertData } = req.body;
-  const randomId = Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
   try {
     const isPage = await Page.findOne({
       $and: [{ templateId: templateId }, { _id: pageId }],
     });
     for (let obj of insertData) {
-      isPage.data.push({ ...obj, id: randomId });
+      const randomIdForSubData =
+        Math.floor(Math.random() * (99999999 - 10 + 1)) + 10;
+
+      isPage.data.push({ ...obj, id: randomIdForSubData });
+      console.log(isPage.data)
+      if (obj.ListItems) {
+        for (let subListItem of obj.ListItems) {
+          const randomIdForListItem =
+            Math.floor(Math.random() * (999999 - 10 + 1)) + 10;
+          subListItem.id = randomIdForListItem;
+        }
+      }
+      await isPage.save();
     }
-    await isPage.save();
     return res.send({
-      templateId,
-      pageId,
       isPage,
       length: isPage.data.length,
     });
@@ -139,7 +168,6 @@ const insertPageData = async (req, res) => {
     return res.send({ success: false, msg: `error:${err.message}` });
   }
 };
-
 //insert list item
 const insertListItem = async (req, res) => {
   const { pageId, subDataId, listItemData } = req.body;
@@ -177,6 +205,11 @@ const fetchPagesOfTemplate = async (req, res) => {
   } catch (err) {
     return res.send({ success: false, msg: `error: ${err.message}` });
   }
+};
+
+const fetchPage = async (req, res) => {
+  const page = await Page.findOne({ _id: req.params.pageId });
+  return res.send({ success: true, page });
 };
 
 //fetch template data by id
@@ -271,6 +304,7 @@ module.exports = {
   createNewPage,
   addBottomData,
   insertPageData,
+  fetchPage,
   insertListItem,
   fetchPagesOfTemplate,
   fetchTemplate,

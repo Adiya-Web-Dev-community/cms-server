@@ -7,6 +7,7 @@ const {
   fetchPagesOfTemplate,
   fetchTemplate,
   insertPageData,
+  fetchPage,
   insertListItem,
   fetchAllTemplates,
   fetchTemplatesByCategory,
@@ -20,6 +21,7 @@ router.post("/addBottomData/:templateId", addBottomData);
 router.get("/fetch-pages/:templateId", fetchPagesOfTemplate);
 router.get("/fetch-template/:id", fetchTemplate);
 router.post("/insert-page-data", insertPageData);
+router.get("/fetch-page/:pageId", fetchPage);
 router.post("/insert-list-item", insertListItem);
 router.get("/fetch-all-templates", fetchAllTemplates);
 router.get("/fetch-templates-by-category/:category", fetchTemplatesByCategory);
@@ -27,6 +29,3 @@ router.patch("/change-page-name/:pageId", changePageName);
 router.put("/add-update-list-data/:pageId/", updateListItemData);
 
 module.exports = router;
-
-
-

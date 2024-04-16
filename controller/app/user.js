@@ -100,6 +100,7 @@ const createProjectFromTemplate = async (req, res) => {
   await newProject.save();
 
   for (let page of originalTemplate.pages) {
+    console.log(page);
     const newPage = await UserProjectPage.create({
       title: page.title,
       data: page.data,

@@ -4,10 +4,6 @@ const UserProjectPage = require("../../models/app/user/project-page");
 
 //fetch all project of individual user
 const fetchAllUserProjects = async (req, res) => {
-  const { userId } = req.params;
-  if (!userId) {
-    return res.send({ success: false, msg: "User Id not found" });
-  }
   try {
     const allProjects = await UserProject.find({ userId: req.accountId });
     return res.send({ list: allProjects, listLength: allProjects.length });

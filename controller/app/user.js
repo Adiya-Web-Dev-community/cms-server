@@ -300,27 +300,51 @@ const deletePageData = async (req, res) => {
 
 //modify image /title of data
 const modifyDataTitleAndImage = async (req, res) => {
-  const { pageId, subDataId } = req.body;
-  let updateData = {};
-  if (req.body.image) {
-    updateData.image = req.body.image;
-  }
-  if (req.body.title) {
-    updateData.title = req.body.title;
-  }
+  const { pageId, subDataId, title, image } = req.body;
+
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
-    const obj = isPage.data.find((obj) => obj.id === subDataId);
-    if (req.body.title) {
-      obj.title = req.body.title;
+    if (!isPage) {
+      return res.status(404).send({ success: false, msg: "Page not found" });
     }
-    if (req.body.image) {
-      obj.image = req.body.image;
+
+    let subData = isPage.data.find((obj) => obj.id === subDataId);
+    if (!subData) {
+      return res
+        .status(404)
+        .send({ success: false, msg: "Sub-data not found" });
     }
+
+    if (title) {
+      subData.title = title;
+    }
+
+    if (image) {
+      subData.image = image;
+    }
+
+    const updateData = [...isPage.data, subData];
+    const filter = { _id: pageId, "data.id": subDataId };
+    const update = {
+      data: updateData,
+    };
+    const options = { new: true };
+    const updatedPage = await UserProjectPage.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
     await isPage.save();
-    return res.send({ success: true, msg: "sub data found", isPage });
+
+    return res.send({
+      success: true,
+      msg: "Sub-data updated successfully",
+      updatedPage,
+    });
   } catch (err) {
-    return res.send({ success: false, msg: `error :${err.message}` });
+    return res
+      .status(500)
+      .send({ success: false, msg: `Error: ${err.message}` });
   }
 };
 
@@ -370,11 +394,31 @@ const deleteListItem = async (req, res) => {
 
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
+    console.log("page", isPage);
 
     let subData = isPage.data.find((obj) => obj.id === subDataId);
     let arr = subData.ListItems.filter((obj) => obj.id != listItemId);
     subData.ListItems = arr;
-    await isPage.save();
+
+    const updateData = [...isPage.data, subData];
+    console.log(updateData);
+
+    const filter = { _id: pageId, "data.id": subDataId };
+    const update = {
+    data:updateData
+    };
+    const options = { new: true };
+    const updatedPage = await UserProjectPage.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    if (!updatedPage) {
+      return res
+        .status(404)
+        .send({ success: false, msg: "Page or Subdata not found" });
+    }
+    // await isPage.save();
 
     return res.send(isPage);
   } catch (err) {

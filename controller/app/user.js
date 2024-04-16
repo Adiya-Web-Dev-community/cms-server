@@ -394,18 +394,16 @@ const deleteListItem = async (req, res) => {
 
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
-    console.log("page", isPage);
 
     let subData = isPage.data.find((obj) => obj.id === subDataId);
     let arr = subData.ListItems.filter((obj) => obj.id != listItemId);
     subData.ListItems = arr;
 
     const updateData = [...isPage.data, subData];
-    console.log(updateData);
 
     const filter = { _id: pageId, "data.id": subDataId };
     const update = {
-    data:updateData
+      data: updateData,
     };
     const options = { new: true };
     const updatedPage = await UserProjectPage.findOneAndUpdate(
@@ -418,7 +416,6 @@ const deleteListItem = async (req, res) => {
         .status(404)
         .send({ success: false, msg: "Page or Subdata not found" });
     }
-    // await isPage.save();
 
     return res.send(isPage);
   } catch (err) {

@@ -15,6 +15,12 @@ var cors = require("cors");
 const { Server } = require("socket.io");
 const { createServer } = require("http");
 app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
+  res.setHeader("Access-Control-Allow-Methods", "GET, PATCH, POST, DELETE, PUT, OPTIONS");
+  next();
+});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const server = createServer(app);

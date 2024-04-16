@@ -24,7 +24,7 @@ router.get("/fetch-user-projects", middleware, fetchAllUserProjects);
 router.get("/fetch-project/:projectId", fetchProject);
 
 router.post("/create-blank-project", middleware, createBlankProject);
-router.get(
+router.post(
   "/create-project-from-template",
   middleware,
   createProjectFromTemplate

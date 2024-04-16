@@ -278,16 +278,27 @@ const deletePageData = async (req, res) => {
     if (!isPage) {
       return res.send({
         success: false,
-        msg: "Page cannot found with give id",
+        msg: "Page cannot found with given pageId",
       });
     }
 
     isPage.data = isPage.data.filter((obj) => obj.id !== subDataId);
+    const updateData = [...isPage.data];
+    const filter = { _id: pageId, "data.id": subDataId };
+    const update = {
+      data: updateData,
+    };
+    const options = { new: true };
+    const updatedPage = await UserProjectPage.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
     await isPage.save();
     return res.send({
       success: false,
       msg: "Data deleted successfully",
-      isPage,
+      updatedPage,
     });
   } catch (err) {
     return res.send({ success: false, msg: `error : ${err.message}` });

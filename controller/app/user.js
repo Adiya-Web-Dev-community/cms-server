@@ -38,7 +38,7 @@ const fetchProject = async (req, res) => {
 
 //create blank project
 const createBlankProject = async (req, res) => {
-  const { projectName, category } = req.body;
+  const { projectName, category, appIcon, primaryColor } = req.body;
   if (!projectName) {
     return res.send({ success: false, msg: "Project name cannot be empty!" });
   }
@@ -48,6 +48,16 @@ const createBlankProject = async (req, res) => {
       msg: "Please select category to cretae new template",
     });
   }
+  if (!appIcon) {
+    return res.send({ success: false, msg: "Please select icon for you app" });
+  }
+  if (!primaryColor) {
+    return res.send({
+      success: false,
+      msg: "Please set primary color for you app",
+    });
+  }
+
   try {
     //create template
     const newProject = await UserProject.create({
@@ -273,6 +283,7 @@ const insertPageData = async (req, res) => {
 //delete subData
 const deletePageData = async (req, res) => {
   const { pageId, subDataId } = req.body;
+  console.log(pageId, typeof pageId, typeof subDataId);
   try {
     const isPage = await UserProjectPage.findOne({ _id: pageId });
     if (!isPage) {
@@ -294,10 +305,15 @@ const deletePageData = async (req, res) => {
       update,
       options
     );
-    await isPage.save();
+    if (!updatedPage) {
+      return res
+        .status(404)
+        .send({ success: false, msg: "Page or Subdata not found" });
+    }
+
     return res.send({
-      success: false,
-      msg: "Data deleted successfully",
+      success: true,
+      msg: "data deleted successfully",
       updatedPage,
     });
   } catch (err) {

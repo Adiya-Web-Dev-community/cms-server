@@ -61,9 +61,13 @@ const createBlankProject = async (req, res) => {
   try {
     //create template
     const newProject = await UserProject.create({
-      ...req.body,
+      projectName: projectName,
+      category: category,
+      appIcon: appIcon,
+      styling: [{ primaryColor: primaryColor }],
       userId: req.accountId,
     });
+
     //create default home page
     const newPage = await UserProjectPage.create({
       title: "Home",
@@ -73,6 +77,14 @@ const createBlankProject = async (req, res) => {
     //add home page ID to template
     newProject.pages.push(newPage._id);
     await newProject.save();
+
+    // Update styling field :primary color
+    const hey = await UserProject.findByIdAndUpdate(
+      newProject._id,
+      { $push: { styling: { primaryColor: primaryColor } } },
+      { new: true }
+    );
+    console.log(hey);
 
     return res.send({
       success: true,

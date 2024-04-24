@@ -64,8 +64,7 @@ const createBlankProject = async (req, res) => {
       projectName: projectName,
       category: category,
       appIcon: appIcon,
-      // styling:[{primaryColor:primaryColor}]  //styling is array datatatype
-      styling: { primaryColor: primaryColor, width: "100%", height: "100%" },
+      styling: [{ primaryColor: primaryColor }],
       userId: req.accountId,
     });
 
@@ -73,19 +72,19 @@ const createBlankProject = async (req, res) => {
     const newPage = await UserProjectPage.create({
       title: "Home",
       projectId: newProject._id,
-      styling: { width: "100%", height: "100%" },
     });
 
     //add home page ID to template
     newProject.pages.push(newPage._id);
     await newProject.save();
 
-    // Update styling field :primary color: when styling is an array datatype
-    // const updatedStyling = await UserProject.findByIdAndUpdate(
-    //   newProject._id,
-    //   { $push: { styling: { primaryColor: primaryColor } } },
-    //   { new: true }
-    // );
+    // Update styling field :primary color
+    const hey = await UserProject.findByIdAndUpdate(
+      newProject._id,
+      { $push: { styling: { primaryColor: primaryColor } } },
+      { new: true }
+    );
+    console.log(hey);
 
     return res.send({
       success: true,
@@ -194,7 +193,6 @@ const createNewProjectPage = async (req, res) => {
     const newPage = await UserProjectPage.create({
       title: title,
       projectId: projectId,
-      styling: { width: "100%", height: "100%" },
     });
 
     //add home page ID to template

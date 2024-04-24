@@ -7,8 +7,6 @@ const templatePageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user-project",
   },
-  // styling: [{ type: mongoose.Schema.Types.Mixed }],
-  styling: { type: Object },
 });
 
 const PageModel = mongoose.model("user-project-page", templatePageSchema);

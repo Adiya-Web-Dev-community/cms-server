@@ -7,7 +7,8 @@ const templateSchema = new mongoose.Schema({
   appIcon: { type: String },
   pages: [{ type: mongoose.Schema.Types.ObjectId, ref: "user-project-page" }], // Check this line
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
-  styling:[{type:mongoose.Schema.Types.Mixed}],
+  // styling:[{type:mongoose.Schema.Types.Mixed}],
+  styling:{type:Object},
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 

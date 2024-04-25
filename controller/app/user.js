@@ -497,6 +497,25 @@ const modifyListItemFields = async (req, res) => {
   }
 };
 
+//change tab data status
+const changeTabDataStatus = async (req, res) => {
+  const { projectId, changeTabField } = req.body;
+  if (!projectId) {
+    return res.send({ success: false, msg: "Project Id not found" });
+  }
+  try {
+    const updateTabFields = await UserProject.findOneAndUpdate(
+      { _id: projectId },
+      changeTabField,
+      { new: true }
+    );
+    const findProject = await UserProject.findOne({ _id: projectId });
+    return res.send({ success: false, findProject });
+  } catch (err) {
+    return res.send({ success: false, msg: `error : ${err.message}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -513,4 +532,5 @@ module.exports = {
   insertListItem,
   deleteListItem,
   modifyListItemFields,
+  changeTabDataStatus,
 };

@@ -17,6 +17,7 @@ const {
   insertListItem,
   deleteListItem,
   modifyListItemFields,
+  changeTabDataStatus,
 } = require("../../controller/app/user");
 
 //? check later token not wokring for native developer
@@ -33,7 +34,7 @@ router.post("/addBottomData/:projectId", addBottomData);
 router.patch("/change-project-data/:projectId", changeProjectData);
 //page data apis
 router.post("/create-new-project-page/:projectId", createNewProjectPage);
-router.get("/fetch-listItems/:pageId/:subDataId", fetchListItemsOfPageData)
+router.get("/fetch-listItems/:pageId/:subDataId", fetchListItemsOfPageData);
 router.post("/insert-project-page-data", insertPageData);
 router.patch("/change-page-title/:pageId", changePageTitle);
 router.delete("/delete-page-data", deletePageData);
@@ -42,5 +43,6 @@ router.patch("/modify-data-title-image", modifyDataTitleAndImage);
 router.post("/insert-project-page-list-item", insertListItem);
 router.delete("/delete-list-item", deleteListItem);
 router.patch("/modify-list-item-field", modifyListItemFields);
+router.patch("/change-tab-status", changeTabDataStatus);
 
 module.exports = router;

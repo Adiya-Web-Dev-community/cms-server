@@ -7,8 +7,13 @@ const templateSchema = new mongoose.Schema({
   appIcon: { type: String },
   pages: [{ type: mongoose.Schema.Types.ObjectId, ref: "user-project-page" }], // Check this line
   BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
+  showBottomTabData: { type: Boolean, default: true, enum: [true, false] },
+  TopTabData: [{ type: mongoose.Schema.Types.Mixed }],
+  showTopTabData: { type: Boolean, default: true, enum: [true, false] },
+  listTabData: [{ type: mongoose.Schema.Types.Mixed }],
+  showListTabData: { type: Boolean, default: true, enum: [true, false] },
   // styling:[{type:mongoose.Schema.Types.Mixed}],
-  styling:{type:Object},
+  styling: { type: Object },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
 });
 

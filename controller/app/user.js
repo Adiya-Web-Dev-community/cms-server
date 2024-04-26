@@ -156,21 +156,18 @@ const changeProjectData = async (req, res) => {
   if (!projectId) {
     return res.send({ success: false, msg: "Project Id not found" });
   }
-
+  const { updateFields } = req.body;
+  console.log("=>",updateFields);
   try {
-    const isProject = await UserProject.findOne({ _id: projectId });
-    if (req.body.projectName) {
-      isProject.projectName = req.body.projectName;
-      await isProject.save();
-    }
-    if (req.body.appIcon) {
-      isProject.appIcon = req.body.appIcon;
-      await isProject.save();
-    }
+    const updateProjectData = await UserProject.findByIdAndUpdate(
+      { _id: projectId },
+      updateFields,
+      { new: true }
+    );
     return res.send({
       success: true,
       msg: "Project has been updated",
-      data: isProject,
+      data: updateProjectData,
     });
   } catch (err) {
     return res.send({ success: true, msg: `error:${err.message}` });
@@ -236,20 +233,18 @@ const fetchListItemsOfPageData = async (req, res) => {
 };
 
 //change page name
-const changePageTitle = async (req, res) => {
+const changePageData = async (req, res) => {
   const { pageId } = req.params;
   if (!pageId) {
     return res.send({ success: false, msg: `Cannot find pageId` });
   }
-  const { title } = req.body;
-  if (!title || title === "") {
-    return res.send({ success: false, msg: "Page title cannot be empty" });
-  }
+
+  const { updateFields } = req.body;
 
   try {
     const isPage = await UserProjectPage.findOneAndUpdate(
       { _id: pageId },
-      { title: title },
+      updateFields,
       { new: true }
     );
     return res.send({
@@ -516,6 +511,27 @@ const changeTabDataStatus = async (req, res) => {
   }
 };
 
+const addPageScreenshot = async (req, res) => {
+  const { screenshotImage, pageId } = req.body;
+  if (!pageId) {
+    return res.send({ success: false, msg: "Canoot find page Id" });
+  }
+  if (!screenshotImage) {
+    return res.send({ success: true, msg: "Cannot find screenshot image" });
+  }
+  try {
+    const screenshotFieldToBeUpdated = { screenshotImage: screenshotImage };
+    const updateScreenshot = await UserProjectPage.findOneAndUpdate(
+      { _id: pageId },
+      screenshotFieldToBeUpdated,
+      { new: true }
+    );
+    return res.send({ success: true, updateScreenshot });
+  } catch (err) {
+    return rs.send({ success: false, msg: `error : ${err.message}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -526,11 +542,12 @@ module.exports = {
   createNewProjectPage,
   fetchListItemsOfPageData,
   insertPageData,
-  changePageTitle,
+  changePageData,
   deletePageData,
   modifyDataTitleAndImage,
   insertListItem,
   deleteListItem,
   modifyListItemFields,
   changeTabDataStatus,
+  addPageScreenshot,
 };

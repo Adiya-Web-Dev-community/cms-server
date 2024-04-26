@@ -5,8 +5,9 @@ const templateSchema = new mongoose.Schema({
   category: { type: String },
   projectName: { type: String },
   appIcon: { type: String },
+  theme: { type: String },
   pages: [{ type: mongoose.Schema.Types.ObjectId, ref: "user-project-page" }], // Check this line
-  BottomTabData: [{ type: mongoose.Schema.Types.Mixed }],
+  BottomTabData: [{ type: mongoose.Schema.Types.Mixed, default: false }],
   showBottomTabData: { type: Boolean, default: true, enum: [true, false] },
   TopTabData: [{ type: mongoose.Schema.Types.Mixed }],
   showTopTabData: { type: Boolean, default: true, enum: [true, false] },

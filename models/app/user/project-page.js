@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const templatePageSchema = new mongoose.Schema({
-  title: String,
+  title: { type: String },
+  screenshotImage: { type: String },
   data: { type: Array },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,

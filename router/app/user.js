@@ -4,6 +4,7 @@ const middleware = require("../../middleware/account");
 const {
   fetchAllUserProjects,
   fetchProject,
+  fetchPage,
   createBlankProject,
   createProjectFromTemplate,
   addBottomData,
@@ -24,7 +25,7 @@ const {
 //? check later token not wokring for native developer
 router.get("/fetch-user-projects", middleware, fetchAllUserProjects);
 router.get("/fetch-project/:projectId", fetchProject);
-
+router.get("/fetch-page/:projectId/:pageId", fetchPage)
 router.post("/create-blank-project", middleware, createBlankProject);
 router.post(
   "/create-project-from-template",

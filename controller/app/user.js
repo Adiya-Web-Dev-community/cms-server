@@ -36,6 +36,32 @@ const fetchProject = async (req, res) => {
   }
 };
 
+//fetch page data by id
+const fetchPage = async (req, res) => {
+  const { projectId, pageId } = req.params;
+  if (!projectId) {
+    return res.send({ success: false, msg: "Project id not found" });
+  }
+
+  if (!pageId) {
+    return res.send({ success: false, msg: "Page id not found" });
+  }
+  try {
+    const isPage = await UserProjectPage.findOne({ _id: pageId , projectId: projecId})
+    if (!isPage) {
+      return res.send({ success: false, msg: "Page not found" });
+    }
+
+    return res.send({
+      success: true,
+      msg: "Page data fetch successfully",
+      isPage,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `catch error: ${err.message}` });
+  }
+};
+
 //create blank project
 const createBlankProject = async (req, res) => {
   const { projectName, category, appIcon, primaryColor } = req.body;
@@ -535,6 +561,7 @@ const addPageScreenshot = async (req, res) => {
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
+  fetchPage,
   createBlankProject,
   createProjectFromTemplate,
   addBottomData,

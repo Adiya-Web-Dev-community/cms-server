@@ -38,16 +38,13 @@ const fetchProject = async (req, res) => {
 
 //fetch page data by id
 const fetchPage = async (req, res) => {
-  const { projectId, pageId } = req.params;
-  if (!projectId) {
-    return res.send({ success: false, msg: "Project id not found" });
-  }
-
+  const {  pageId } = req.params;
+  
   if (!pageId) {
     return res.send({ success: false, msg: "Page id not found" });
   }
   try {
-    const isPage = await UserProjectPage.findOne({ _id: pageId , projectId: projectId})
+    const isPage = await UserProjectPage.findOne({ _id: pageId})
     if (!isPage) {
       return res.send({ success: false, msg: "Page not found" });
     }

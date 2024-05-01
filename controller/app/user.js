@@ -52,7 +52,7 @@ const fetchPage = async (req, res) => {
     return res.send({
       success: true,
       msg: "Page data fetch successfully",
-      isPage,
+     pageData: isPage,
     });
   } catch (err) {
     return res.send({ success: false, msg: `catch error: ${err.message}` });

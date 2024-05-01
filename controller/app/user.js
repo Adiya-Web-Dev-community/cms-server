@@ -47,7 +47,7 @@ const fetchPage = async (req, res) => {
     return res.send({ success: false, msg: "Page id not found" });
   }
   try {
-    const isPage = await UserProjectPage.findOne({ _id: pageId , projectId: projecId})
+    const isPage = await UserProjectPage.findOne({ _id: pageId , projectId: projectId})
     if (!isPage) {
       return res.send({ success: false, msg: "Page not found" });
     }

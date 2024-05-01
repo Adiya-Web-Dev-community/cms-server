@@ -19,7 +19,7 @@ const fetchProject = async (req, res) => {
     return res.send({ success: false, msg: "Project id not found" });
   }
   try {
-    const isProject = await UserProject.findOne({ _id: projectId })
+    const isProject = await UserProject.findById(projectId)
       .populate("userId")
       .populate("pages");
     if (!isProject) {

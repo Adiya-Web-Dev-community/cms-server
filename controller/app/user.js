@@ -378,7 +378,7 @@ const modifyDataTitleAndImage = async (req, res) => {
       subData.image = image;
     }
 
-    const updateData = [...isPage.data, subData];
+    const updateData = [...isPage.data];
     const filter = { _id: pageId, "data.id": subDataId };
     const update = {
       data: updateData,

@@ -19,7 +19,7 @@ const fetchProject = async (req, res) => {
     return res.send({ success: false, msg: "Project id not found" });
   }
   try {
-    const isProject = await UserProject.findOne({_id: projectId})
+    const isProject = await UserProject.findOne({ _id: projectId })
       .populate("userId")
       .populate("pages");
     if (!isProject) {
@@ -38,13 +38,13 @@ const fetchProject = async (req, res) => {
 
 //fetch page data by id
 const fetchPage = async (req, res) => {
-  const {  pageId } = req.params;
-  
+  const { pageId } = req.params;
+
   if (!pageId) {
     return res.send({ success: false, msg: "Page id not found" });
   }
   try {
-    const isPage = await UserProjectPage.findOne({ _id: pageId})
+    const isPage = await UserProjectPage.findOne({ _id: pageId });
     if (!isPage) {
       return res.send({ success: false, msg: "Page not found" });
     }
@@ -52,7 +52,7 @@ const fetchPage = async (req, res) => {
     return res.send({
       success: true,
       msg: "Page data fetch successfully",
-     pageData: isPage,
+      pageData: isPage,
     });
   } catch (err) {
     return res.send({ success: false, msg: `catch error: ${err.message}` });
@@ -180,7 +180,7 @@ const changeProjectData = async (req, res) => {
     return res.send({ success: false, msg: "Project Id not found" });
   }
   const { updateFields } = req.body;
-  console.log("=>",updateFields);
+  console.log("=>", updateFields);
   try {
     const updateProjectData = await UserProject.findByIdAndUpdate(
       { _id: projectId },
@@ -490,12 +490,24 @@ const modifyListItemFields = async (req, res) => {
 
   try {
     let isPage = await UserProjectPage.findOne({ _id: pageId });
+    if (!isPage) {
+      return res.sed({ success: false, msg: "Page not found with given Id" });
+    }
+    // console.log("page found=>", isPage);
     let subDataObj = isPage.data.find((obj) => obj.id === subDataId);
+    // console.log("sub data obj =>", subDataObj);
     let listItemObj = subDataObj.ListItems.find((obj) => obj.id === listItemId);
+    // console.log("sub data obj =>", listItemObj);
+
     for (var keyOFListItem in listItemObj) {
       for (var keyOfUpdateItem in updateData) {
         if (keyOFListItem === keyOfUpdateItem) {
           listItemObj[keyOFListItem] = updateData[keyOfUpdateItem];
+        } else {
+          return res.send({
+            success: false,
+            msg: `field to be updated in req.body =>${keyOfUpdateItem} not found in list item of page Data`,
+          });
         }
       }
     }
@@ -504,11 +516,28 @@ const modifyListItemFields = async (req, res) => {
         obj = listItemObj;
       }
     });
-    await isPage.save();
+
+    //update data in page
+    const filter = { _id: pageId };
+    const updatePageData = { data: isPage.data };
+    const options = { new: true };
+
+    //find and update
+    const updatedPageData = await UserProjectPage.findOneAndUpdate(
+      filter,
+      updatePageData,
+      options
+    );
+    if (!updatedPageData) {
+      return res
+        .status(404)
+        .send({ success: false, msg: "Page or Subdata not found" });
+    }
+
     return res.send({
       success: true,
-      msg: "data updated successfully",
-      updatedPage: isPage,
+      msg: "List item data updated successfully",
+      data: isPage,
     });
   } catch (err) {
     return res.send({ success: false, msg: `error: ${err.message}` });

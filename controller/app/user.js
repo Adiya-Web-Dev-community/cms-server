@@ -503,11 +503,6 @@ const modifyListItemFields = async (req, res) => {
       for (var keyOfUpdateItem in updateData) {
         if (keyOFListItem === keyOfUpdateItem) {
           listItemObj[keyOFListItem] = updateData[keyOfUpdateItem];
-        } else {
-          return res.send({
-            success: false,
-            msg: `field to be updated in req.body =>${keyOfUpdateItem} not found in list item of page Data`,
-          });
         }
       }
     }

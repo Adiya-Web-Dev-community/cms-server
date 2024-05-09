@@ -496,8 +496,11 @@ const modifyListItemFields = async (req, res) => {
     // console.log("page found=>", isPage);
     let subDataObj = isPage.data.find((obj) => obj.id === subDataId);
     // console.log("sub data obj =>", subDataObj);
-    let listItemObj = subDataObj.ListItems.find((obj) => obj.id === listItemId);
-    // console.log("sub data obj =>", listItemObj);
+    let listItemObj = subDataObj.ListItems.find((obj) => {
+      if (obj.id === listItemId) {
+        return obj;
+      }
+    });
 
     for (var keyOFListItem in listItemObj) {
       for (var keyOfUpdateItem in updateData) {
@@ -532,7 +535,7 @@ const modifyListItemFields = async (req, res) => {
     return res.send({
       success: true,
       msg: "List item data updated successfully",
-      data: isPage,
+      data: updatedPageData,
     });
   } catch (err) {
     return res.send({ success: false, msg: `error: ${err.message}` });

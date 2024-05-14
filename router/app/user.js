@@ -21,6 +21,9 @@ const {
   changeTabDataStatus,
   addPageScreenshot,
   deleteProject,
+  //component and layout
+  createComponent,
+  createLayout,
 } = require("../../controller/app/user");
 
 //? check later token not wokring for native developer
@@ -49,5 +52,8 @@ router.patch("/modify-list-item-field", modifyListItemFields);
 router.patch("/change-tab-status", changeTabDataStatus);
 router.patch("/page-screenshot", addPageScreenshot);
 router.delete("/delete-project/:projectId", deleteProject);
+//component and layout
+router.post("/create-component", createComponent);
+router.post("/create-layout", createLayout);
 
 module.exports = router;

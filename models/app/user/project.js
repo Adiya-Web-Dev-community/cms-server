@@ -13,6 +13,13 @@ const templateSchema = new mongoose.Schema({
   showTopTabData: { type: Boolean, default: true, enum: [true, false] },
   listTabData: [{ type: mongoose.Schema.Types.Mixed }],
   showListTabData: { type: Boolean, default: true, enum: [true, false] },
+  //array of layout ids
+  layout:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user-project-layout",
+    },
+  ],
   // styling:[{type:mongoose.Schema.Types.Mixed}],
   styling: { type: Object },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },

@@ -1,6 +1,8 @@
 const Template = require("../../models/app//manager/template");
 const UserProject = require("../../models/app/user/project");
 const UserProjectPage = require("../../models/app/user/project-page");
+const UserProjectComponent = require("../../models/app/user/component");
+const UserProjectLayout = require("../../models/app/user/layout");
 
 //fetch all project of individual user
 const fetchAllUserProjects = async (req, res) => {
@@ -599,6 +601,72 @@ const deleteProject = async (req, res) => {
   }
 };
 
+//COMPONENTS AND LAYOUT
+
+//create component
+const createComponent = async (req, res) => {
+  const { layoutId, title } = req.body;
+
+  if (!layoutId) {
+    return res.send({ success: false, msg: "Layout id not found" });
+  }
+  if (!title) {
+    return res.send({ success: false, msg: "Title not found" });
+  }
+
+  try {
+    //find layout
+    const isLayout = await UserProjectLayout.findById(layoutId);
+    if (!isLayout) {
+      return res.send({
+        success: false,
+        msg: "Cannot find layout with given id",
+      });
+    }
+    //find component
+    const newComponent = await UserProjectComponent.create({
+      title: req.body.title,
+    });
+    isLayout.component.push(newComponent?._id);
+    await isLayout.save();
+    return res.send({
+      success: true,
+      msg: "New component created",
+      newComponent,
+    });
+  } catch (err) {
+    return res.send({ success: false, msg: `error : ${err.message}` });
+  }
+};
+
+//create layout
+const createLayout = async (req, res) => {
+  const { projectId, title } = req.body;
+  if (!projectId) {
+    return res.send({ success: false, msg: "Project id not found" });
+  }
+  if (!title) {
+    return res.send({ success: false, msg: "Title not found" });
+  }
+  try {
+    const isProject = await UserProject.findById(projectId);
+    if (!isProject) {
+      return res.send({
+        success: false,
+        msg: "Cannot find project with give id",
+      });
+    }
+    //   //create layout
+    const newLayout = await UserProjectLayout.create({ title: req.body.title });
+    isProject.layout.push(newLayout?._id);
+    await isProject.save();
+
+    return res.send(isProject);
+  } catch (err) {
+    return res.send({ sucess: false, msg: `error : ${err.message}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -619,4 +687,7 @@ module.exports = {
   changeTabDataStatus,
   addPageScreenshot,
   deleteProject,
+  //component and layout
+  createComponent,
+  createLayout,
 };

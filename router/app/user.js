@@ -20,12 +20,13 @@ const {
   modifyListItemFields,
   changeTabDataStatus,
   addPageScreenshot,
+  deleteProject,
 } = require("../../controller/app/user");
 
 //? check later token not wokring for native developer
 router.get("/fetch-user-projects", middleware, fetchAllUserProjects);
 router.get("/fetch-project/:projectId", fetchProject);
-router.get("/fetch-page-data-by-id/:pageId", fetchPage)
+router.get("/fetch-page-data-by-id/:pageId", fetchPage);
 router.post("/create-blank-project", middleware, createBlankProject);
 router.post(
   "/create-project-from-template",
@@ -47,5 +48,6 @@ router.delete("/delete-list-item", deleteListItem);
 router.patch("/modify-list-item-field", modifyListItemFields);
 router.patch("/change-tab-status", changeTabDataStatus);
 router.patch("/page-screenshot", addPageScreenshot);
+router.delete("/delete-project/:projectId", deleteProject);
 
 module.exports = router;

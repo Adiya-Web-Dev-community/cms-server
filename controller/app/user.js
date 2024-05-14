@@ -582,6 +582,23 @@ const addPageScreenshot = async (req, res) => {
   }
 };
 
+//delete project
+const deleteProject = async (req, res) => {
+  const { projectId } = req.params;
+  try {
+    const isProject = await UserProject.findByIdAndDelete({ _id: projectId });
+    if (!isProject) {
+      return res.send({
+        success: false,
+        msg: "Cannot find project with this id / Cannot delete project",
+      });
+    }
+    return res.send({ success: true, msg: `Project deleted successfully` });
+  } catch (err) {
+    return res.send({ success: false, msg: `error :${err.messgage}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -601,4 +618,5 @@ module.exports = {
   modifyListItemFields,
   changeTabDataStatus,
   addPageScreenshot,
+  deleteProject
 };

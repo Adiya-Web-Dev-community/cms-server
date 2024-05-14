@@ -618,5 +618,5 @@ module.exports = {
   modifyListItemFields,
   changeTabDataStatus,
   addPageScreenshot,
-  deleteProject
+  deleteProject,
 };

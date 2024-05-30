@@ -23,7 +23,14 @@ const fetchProject = async (req, res) => {
   try {
     const isProject = await UserProject.findOne({ _id: projectId })
       .populate("userId")
-      .populate("pages");
+      .populate("pages")
+      .populate({
+        path: 'layout',
+        populate: {
+          path: 'component',
+          model: 'user-project-component'
+        }
+      })
     if (!isProject) {
       return res.send({ success: false, msg: "Project not found" });
     }

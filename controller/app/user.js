@@ -53,7 +53,14 @@ const fetchPage = async (req, res) => {
     return res.send({ success: false, msg: "Page id not found" });
   }
   try {
-    const isPage = await UserProjectPage.findOne({ _id: pageId });
+    const isPage = await UserProjectPage.findOne({ _id: pageId })
+    .populate({
+      path: "layout",
+      populate: {
+        path: "component",
+        model: "user-project-component",
+      },
+    });
     if (!isPage) {
       return res.send({ success: false, msg: "Page not found" });
     }

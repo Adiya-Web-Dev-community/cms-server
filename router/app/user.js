@@ -24,6 +24,8 @@ const {
   //component and layout
   createComponent,
   createLayout,
+  //PAGE COMPONENT AND LAYOUT
+  createPageLayout,
 } = require("../../controller/app/user");
 
 //? check later token not wokring for native developer
@@ -55,5 +57,8 @@ router.delete("/delete-project/:projectId", deleteProject);
 //component and layout
 router.post("/create-component", createComponent);
 router.post("/create-layout", createLayout);
+
+//PAGE COMPONENT AND LAYOUT
+router.post("/create-page-layout", createPageLayout);
 
 module.exports = router;

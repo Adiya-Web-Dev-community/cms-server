@@ -25,12 +25,12 @@ const fetchProject = async (req, res) => {
       .populate("userId")
       .populate("pages")
       .populate({
-        path: 'layout',
+        path: "layout",
         populate: {
-          path: 'component',
-          model: 'user-project-component'
-        }
-      })
+          path: "component",
+          model: "user-project-component",
+        },
+      });
     if (!isProject) {
       return res.send({ success: false, msg: "Project not found" });
     }
@@ -674,6 +674,34 @@ const createLayout = async (req, res) => {
   }
 };
 
+//PAGE COMPONENT AND LAYOUT
+const createPageLayout = async (req, res) => {
+  const { pageId, title } = req.body;
+  if (!pageId) {
+    return res.send({ success: false, msg: "Project id not found" });
+  }
+  if (!title) {
+    return res.send({ success: false, msg: "Title not found" });
+  }
+  try {
+    const isPage = await UserProjectPage.findById(pageId);
+    if (!isPage) {
+      return res.send({
+        success: false,
+        msg: "Cannot find project with give id",
+      });
+    }
+    //create layout
+    const newLayout = await UserProjectLayout.create({ title: req.body.title });
+    isPage.layout.push(newLayout?._id);
+    await isPage.save();
+
+    return res.send(isPage);
+  } catch (err) {
+    return res.send({ sucess: false, msg: `error : ${err.message}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -694,7 +722,10 @@ module.exports = {
   changeTabDataStatus,
   addPageScreenshot,
   deleteProject,
-  //component and layout
+  //PROJECT COMPONENT AND LAYOUT
   createComponent,
   createLayout,
+
+  //PAGE COMPONENT AND LAYOUT
+  createPageLayout,
 };

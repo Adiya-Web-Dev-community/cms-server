@@ -8,6 +8,13 @@ const templatePageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user-project",
   },
+  //array of layout ids
+  layout: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user-project-layout",
+    },
+  ],
   // styling: [{ type: mongoose.Schema.Types.Mixed }],
   styling: { type: Object },
 });

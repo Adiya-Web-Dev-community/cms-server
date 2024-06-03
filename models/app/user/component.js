@@ -6,7 +6,7 @@ const componentSchema = new mongoose.Schema({
   moveable: { type: Boolean, default: false },
   moveabledata: { type: mongoose.Schema.Types.Mixed },
   data: [{ type: mongoose.Schema.Types.Mixed }],
-  style: { type: mongoose.Schema.Types.Mixed },
+  styling: { type: mongoose.Schema.Types.Mixed },
 });
 
 const ComponentModel = mongoose.model(

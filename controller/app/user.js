@@ -53,8 +53,7 @@ const fetchPage = async (req, res) => {
     return res.send({ success: false, msg: "Page id not found" });
   }
   try {
-    const isPage = await UserProjectPage.findOne({ _id: pageId })
-    .populate({
+    const isPage = await UserProjectPage.findOne({ _id: pageId }).populate({
       path: "layout",
       populate: {
         path: "component",
@@ -189,7 +188,7 @@ const addBottomData = async (req, res) => {
   }
 };
 
-//change project title and appIcon
+//change project title and app icon
 const changeProjectData = async (req, res) => {
   const { projectId } = req.params;
   if (!projectId) {
@@ -230,7 +229,7 @@ const createNewProjectPage = async (req, res) => {
     const newPage = await UserProjectPage.create({
       title: title,
       projectId: projectId,
-      styling: { width: "100%", height: "100%" },
+      styling: { flex: 1 },
     });
 
     //add home page ID to template
@@ -577,6 +576,7 @@ const changeTabDataStatus = async (req, res) => {
   }
 };
 
+// add page screenshot
 const addPageScreenshot = async (req, res) => {
   const { screenshotImage, pageId } = req.body;
   if (!pageId) {
@@ -640,6 +640,7 @@ const createComponent = async (req, res) => {
     //find component
     const newComponent = await UserProjectComponent.create({
       title: req.body.title,
+      styling: { height: "20%", width: "100%" },
     });
     isLayout.component.push(newComponent?._id);
     await isLayout.save();
@@ -670,8 +671,12 @@ const createLayout = async (req, res) => {
         msg: "Cannot find project with give id",
       });
     }
-    //   //create layout
-    const newLayout = await UserProjectLayout.create({ title: req.body.title });
+
+    //create layout
+    const newLayout = await UserProjectLayout.create({
+      title: req.body.title,
+      styling: { height: "20%", width: "100%" },
+    });
     isProject.layout.push(newLayout?._id);
     await isProject.save();
 
@@ -699,7 +704,10 @@ const createPageLayout = async (req, res) => {
       });
     }
     //create layout
-    const newLayout = await UserProjectLayout.create({ title: req.body.title });
+    const newLayout = await UserProjectLayout.create({
+      title: req.body.title,
+      styling: { height: "20%", width: "100%" },
+    });
     isPage.layout.push(newLayout?._id);
     await isPage.save();
 
@@ -732,7 +740,6 @@ module.exports = {
   //PROJECT COMPONENT AND LAYOUT
   createComponent,
   createLayout,
-
   //PAGE COMPONENT AND LAYOUT
   createPageLayout,
 };

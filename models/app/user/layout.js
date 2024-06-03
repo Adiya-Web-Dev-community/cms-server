@@ -8,6 +8,7 @@ const userProjectLayoutSchema = new mongoose.Schema({
       ref: "user-project-component",
     },
   ],
+  styling: { type: mongoose.Schema.Types.Mixed },
 });
 
 const UserProjectLayoutModel = mongoose.model(

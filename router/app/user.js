@@ -22,10 +22,14 @@ const {
   addPageScreenshot,
   deleteProject,
   //component and layout
+  createProjectLayout,
+  createPageLayout,
   createComponent,
-  createLayout,
-  //PAGE COMPONENT AND LAYOUT
-  // createPageLayout,
+  //modify styling
+  addNewLayoutStyling,
+  modifyLayoutStyling,
+  addNewComponentStyling,
+  modifyComponentStyling,
 } = require("../../controller/app/user");
 
 //? check later token not wokring for native developer
@@ -55,10 +59,15 @@ router.patch("/change-tab-status", changeTabDataStatus);
 router.patch("/page-screenshot", addPageScreenshot);
 router.delete("/delete-project/:projectId", deleteProject);
 //component and layout
+router.post("/create-project-layout", createProjectLayout);
+router.post("/create-page-layout", createPageLayout);
 router.post("/create-component", createComponent);
-router.post("/create-layout", createLayout);
 
-//PAGE COMPONENT AND LAYOUT
-// router.post("/create-page-layout", createPageLayout);
+
+
+router.post("/add-new-layout-styling", addNewLayoutStyling);
+router.patch("/modify-layout-styling", modifyLayoutStyling);
+router.post("/add-new-component-styling", addNewComponentStyling);
+router.patch("/modify-component-styling", modifyComponentStyling);
 
 module.exports = router;

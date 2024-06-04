@@ -634,6 +634,70 @@ const deleteProject = async (req, res) => {
 
 //COMPONENTS AND LAYOUT
 
+//create project layout
+const createProjectLayout = async (req, res) => {
+  const { projectId, title } = req.body;
+  if (!projectId) {
+    return res.send({ success: false, msg: "Project id not found" });
+  }
+  if (!title) {
+    return res.send({ success: false, msg: "Title not found" });
+  }
+  try {
+    const isProject = await UserProject.findById(projectId);
+    if (!isProject) {
+      return res.send({
+        success: false,
+        msg: "Cannot find project with give id",
+      });
+    }
+
+    //create layout
+    const newLayout = await UserProjectLayout.create({
+      title: req.body.title,
+      styling: { height: "20%", width: "100%" },
+    });
+    isProject.layout.push(newLayout?._id);
+    await isProject.save();
+
+    return res.send(isProject);
+  } catch (err) {
+    return res.send({ sucess: false, msg: `error : ${err.message}` });
+  }
+};
+
+
+//create page layout
+const createPageLayout = async (req, res) => {
+  const { pageId, title } = req.body;
+  if (!pageId) {
+    return res.send({ success: false, msg: "Project id not found" });
+  }
+  if (!title) {
+    return res.send({ success: false, msg: "Title not found" });
+  }
+  try {
+    const isPage = await UserProjectPage.findById(pageId);
+    if (!isPage) {
+      return res.send({
+        success: false,
+        msg: "Cannot find project with give id",
+      });
+    }
+    //create layout
+    const newLayout = await UserProjectLayout.create({
+      title: req.body.title,
+      styling: { height: "20%", width: "100%" },
+    });
+    isPage.layout.push(newLayout?._id);
+    await isPage.save();
+
+    return res.send(isPage);
+  } catch (err) {
+    return res.send({ sucess: false, msg: `error : ${err.message}` });
+  }
+};
+
 //create component
 const createComponent = async (req, res) => {
   const { layoutId, title } = req.body;
@@ -671,37 +735,7 @@ const createComponent = async (req, res) => {
   }
 };
 
-//create layout
-const createLayout = async (req, res) => {
-  const { projectId, title } = req.body;
-  if (!projectId) {
-    return res.send({ success: false, msg: "Project id not found" });
-  }
-  if (!title) {
-    return res.send({ success: false, msg: "Title not found" });
-  }
-  try {
-    const isProject = await UserProject.findById(projectId);
-    if (!isProject) {
-      return res.send({
-        success: false,
-        msg: "Cannot find project with give id",
-      });
-    }
 
-    //create layout
-    const newLayout = await UserProjectLayout.create({
-      title: req.body.title,
-      styling: { height: "20%", width: "100%" },
-    });
-    isProject.layout.push(newLayout?._id);
-    await isProject.save();
-
-    return res.send(isProject);
-  } catch (err) {
-    return res.send({ sucess: false, msg: `error : ${err.message}` });
-  }
-};
 
 //PAGE COMPONENT AND LAYOUT
 // const createPageLayout = async (req, res) => {
@@ -734,6 +768,162 @@ const createLayout = async (req, res) => {
 //   }
 // };
 
+//add new styling into layout
+const addNewLayoutStyling = async (req, res) => {
+  const { layoutId, stylingObj } = req.body;
+  if (!layoutId) {
+    return res.send({ success: false, msg: "layout id not found" });
+  }
+
+  try {
+    const isLayout = await UserProjectLayout.findById(layoutId);
+
+    if (!isLayout) {
+      return res.send({
+        success: false,
+        msg: "Cannot find layout with this id",
+      });
+    }
+
+    const updateData = { ...isLayout.styling, ...stylingObj };
+    console.log(updateData);
+    const filter = await UserProjectLayout.findOne({ _id: layoutId });
+    const update = {
+      styling: updateData,
+    };
+    const options = { new: true };
+    const updatedLayout = await UserProjectLayout.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    await isLayout.save();
+    return res.send({ success: true, updatedLayout });
+  } catch (err) {
+    return res.send({ success: false, msg: `error:${err.messgae}` });
+  }
+};
+
+//modify layout styling
+const modifyLayoutStyling = async (req, res) => {
+  const { layoutId, stylingObj } = req.body;
+  if (!layoutId) {
+    return res.send({ success: false, msg: "layout id not found" });
+  }
+
+  try {
+    const isLayout = await UserProjectLayout.findById(layoutId);
+
+    if (!isLayout) {
+      return res.send({
+        success: false,
+        msg: "Cannot find layout with this id",
+      });
+    }
+    for (let ele1 in isLayout.styling) {
+      for (let ele2 in stylingObj) {
+        if (ele1 === ele2) {
+          isLayout.styling[ele1] = stylingObj[ele2];
+        }
+      }
+    }
+
+    //update styling obj
+    const updateData = isLayout.styling;
+    const filter = { _id: layoutId };
+    const update = {
+      styling: updateData,
+    };
+    const options = { new: true };
+    const updateLayout = await UserProjectLayout.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    await isLayout.save();
+    return res.send({ success: true, updateLayout });
+  } catch (err) {
+    return res.send({ success: false, msg: `error:${err.message}` });
+  }
+};
+
+//add new styling into layout
+const addNewComponentStyling = async (req, res) => {
+  const { componentId, stylingObj } = req.body;
+  if (!componentId) {
+    return res.send({ success: false, msg: "layout id not found" });
+  }
+
+  try {
+    const isComponent = await UserProjectComponent.findById(componentId);
+    if (!isComponent) {
+      return res.send({
+        success: false,
+        msg: "Cannot find layout with this id",
+      });
+    }
+
+    const updateData = { ...isComponent.styling, ...stylingObj };
+    const filter = await UserProjectLayout.findOne({ _id: layoutId });
+    const update = {
+      styling: updateData,
+    };
+    const options = { new: true };
+    const updatedComponent = await UserProjectLayout.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    await isLayout.save();
+    return res.send({ success: true, updatedComponent });
+  } catch (err) {
+    return res.send({ success: false, msg: `error:${err.messgae}` });
+  }
+};
+
+//modify layout styling
+const modifyComponentStyling = async (req, res) => {
+  const { componentId, stylingObj } = req.body;
+  if (!componentId) {
+    return res.send({ success: false, msg: "layout id not found" });
+  }
+
+  try {
+    const isComponent = await UserProjectComponent.findById(componentId);
+
+    if (!isComponent) {
+      return res.send({
+        success: false,
+        msg: "Cannot find layout with this id",
+      });
+    }
+    for (let ele1 in isComponent.styling) {
+      for (let ele2 in stylingObj) {
+        if (ele1 === ele2) {
+          isComponent.styling[ele1] = stylingObj[ele2];
+        }
+      }
+    }
+
+    //update styling obj
+    const updateData = isComponent.styling;
+    const filter = { _id: componentId };
+    const update = {
+      styling: updateData,
+    };
+    const options = { new: true };
+    const updatedComponent = await UserProjectLayout.findOneAndUpdate(
+      filter,
+      update,
+      options
+    );
+    await isComponent.save();
+    return res.send({ success: true, updatedComponent });
+  } catch (err) {
+    return res.send({ success: false, msg: `error:${err.message}` });
+  }
+};
+
 module.exports = {
   fetchAllUserProjects,
   fetchProject,
@@ -756,7 +946,11 @@ module.exports = {
   deleteProject,
   //PROJECT COMPONENT AND LAYOUT
   createComponent,
-  createLayout,
-  //PAGE COMPONENT AND LAYOUT
-  // createPageLayout,
+  createProjectLayout,
+  createPageLayout,
+  //modify styling
+  addNewLayoutStyling,
+  modifyLayoutStyling,
+  addNewComponentStyling,
+  modifyComponentStyling,
 };

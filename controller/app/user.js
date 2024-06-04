@@ -111,12 +111,20 @@ const createBlankProject = async (req, res) => {
     const newPage = await UserProjectPage.create({
       title: "Home",
       projectId: newProject._id,
-      styling: { width: "100%", height: "100%" },
+      styling: { flex: 1 },
     });
 
     //add home page ID to template
     newProject.pages.push(newPage._id);
     await newProject.save();
+
+    //create layout
+    const newLayout = await UserProjectLayout.create({
+      title: "Home-page-Layout",
+      styling: { height: "20%", width: "100%" },
+    });
+    newPage.layout.push(newLayout?._id);
+    await newPage.save();
 
     // Update styling field :primary color: when styling is an array datatype
     // const updatedStyling = await UserProject.findByIdAndUpdate(
@@ -235,6 +243,15 @@ const createNewProjectPage = async (req, res) => {
     //add home page ID to template
     isProject.pages.push(newPage._id);
     await isProject.save();
+
+    //create layout
+    const newLayout = await UserProjectLayout.create({
+      title: "New-Page-Layout",
+      styling: { height: "20%", width: "100%" },
+    });
+    newPage.layout.push(newLayout?._id);
+    await newPage.save();
+
     return res.send({ success: true, msg: "New page created", newPage });
   } catch (err) {
     return res.send({ suucess: true, msg: `error: ${err.message}` });
@@ -687,35 +704,35 @@ const createLayout = async (req, res) => {
 };
 
 //PAGE COMPONENT AND LAYOUT
-const createPageLayout = async (req, res) => {
-  const { pageId, title } = req.body;
-  if (!pageId) {
-    return res.send({ success: false, msg: "Project id not found" });
-  }
-  if (!title) {
-    return res.send({ success: false, msg: "Title not found" });
-  }
-  try {
-    const isPage = await UserProjectPage.findById(pageId);
-    if (!isPage) {
-      return res.send({
-        success: false,
-        msg: "Cannot find project with give id",
-      });
-    }
-    //create layout
-    const newLayout = await UserProjectLayout.create({
-      title: req.body.title,
-      styling: { height: "20%", width: "100%" },
-    });
-    isPage.layout.push(newLayout?._id);
-    await isPage.save();
+// const createPageLayout = async (req, res) => {
+//   const { pageId, title } = req.body;
+//   if (!pageId) {
+//     return res.send({ success: false, msg: "Project id not found" });
+//   }
+//   if (!title) {
+//     return res.send({ success: false, msg: "Title not found" });
+//   }
+//   try {
+//     const isPage = await UserProjectPage.findById(pageId);
+//     if (!isPage) {
+//       return res.send({
+//         success: false,
+//         msg: "Cannot find project with give id",
+//       });
+//     }
+//     //create layout
+//     const newLayout = await UserProjectLayout.create({
+//       title: req.body.title,
+//       styling: { height: "20%", width: "100%" },
+//     });
+//     isPage.layout.push(newLayout?._id);
+//     await isPage.save();
 
-    return res.send(isPage);
-  } catch (err) {
-    return res.send({ sucess: false, msg: `error : ${err.message}` });
-  }
-};
+//     return res.send(isPage);
+//   } catch (err) {
+//     return res.send({ sucess: false, msg: `error : ${err.message}` });
+//   }
+// };
 
 module.exports = {
   fetchAllUserProjects,
@@ -741,5 +758,5 @@ module.exports = {
   createComponent,
   createLayout,
   //PAGE COMPONENT AND LAYOUT
-  createPageLayout,
+  // createPageLayout,
 };

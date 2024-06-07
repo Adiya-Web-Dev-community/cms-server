@@ -59,11 +59,9 @@ router.patch("/change-tab-status", changeTabDataStatus);
 router.patch("/page-screenshot", addPageScreenshot);
 router.delete("/delete-project/:projectId", deleteProject);
 //component and layout
-router.post("/create-project-layout", createProjectLayout);
-router.post("/create-page-layout", createPageLayout);
+router.post("/add-project-layout", createProjectLayout);
+router.post("/add-page-layout", createPageLayout);
 router.post("/create-component", createComponent);
-
-
 
 router.post("/add-new-layout-styling", addNewLayoutStyling);
 router.patch("/modify-layout-styling", modifyLayoutStyling);

@@ -666,7 +666,6 @@ const createProjectLayout = async (req, res) => {
   }
 };
 
-
 //create page layout
 const createPageLayout = async (req, res) => {
   const { pageId, title } = req.body;
@@ -681,7 +680,7 @@ const createPageLayout = async (req, res) => {
     if (!isPage) {
       return res.send({
         success: false,
-        msg: "Cannot find project with give id",
+        msg: "Cannot find project with given id",
       });
     }
     //create layout
@@ -734,8 +733,6 @@ const createComponent = async (req, res) => {
     return res.send({ success: false, msg: `error : ${err.message}` });
   }
 };
-
-
 
 //PAGE COMPONENT AND LAYOUT
 // const createPageLayout = async (req, res) => {

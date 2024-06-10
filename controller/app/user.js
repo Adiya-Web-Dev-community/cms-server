@@ -861,20 +861,21 @@ const addNewComponentStyling = async (req, res) => {
     }
 
     const updateData = { ...isComponent.styling, ...stylingObj };
-    const filter = await UserProjectLayout.findOne({ _id: layoutId });
+    console.log(updateData)
+    const filter = await UserProjectLayout.findOne({ _id: componentId });
     const update = {
       styling: updateData,
     };
     const options = { new: true };
-    const updatedComponent = await UserProjectLayout.findOneAndUpdate(
+    const updatedComponent = await UserProjectComponent.findOneAndUpdate(
       filter,
       update,
       options
     );
-    await isLayout.save();
+    await isComponent.save();
     return res.send({ success: true, updatedComponent });
   } catch (err) {
-    return res.send({ success: false, msg: `error:${err.messgae}` });
+    return res.send({ success: false, msg: `error:${err.message}` });
   }
 };
 

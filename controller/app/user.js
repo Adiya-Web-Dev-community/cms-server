@@ -848,7 +848,7 @@ const modifyLayoutStyling = async (req, res) => {
 const addNewComponentStyling = async (req, res) => {
   const { componentId, stylingObj } = req.body;
   if (!componentId) {
-    return res.send({ success: false, msg: "layout id not found" });
+    return res.send({ success: false, msg: "component id not found" });
   }
 
   try {
@@ -856,7 +856,7 @@ const addNewComponentStyling = async (req, res) => {
     if (!isComponent) {
       return res.send({
         success: false,
-        msg: "Cannot find layout with this id",
+        msg: "Cannot find component with this id",
       });
     }
 
@@ -883,7 +883,7 @@ const addNewComponentStyling = async (req, res) => {
 const modifyComponentStyling = async (req, res) => {
   const { componentId, stylingObj } = req.body;
   if (!componentId) {
-    return res.send({ success: false, msg: "layout id not found" });
+    return res.send({ success: false, msg: "component id not found" });
   }
 
   try {
@@ -892,7 +892,7 @@ const modifyComponentStyling = async (req, res) => {
     if (!isComponent) {
       return res.send({
         success: false,
-        msg: "Cannot find layout with this id",
+        msg: "Cannot find component with this id",
       });
     }
     for (let ele1 in isComponent.styling) {

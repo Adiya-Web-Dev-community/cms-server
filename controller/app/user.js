@@ -861,7 +861,7 @@ const addNewComponentStyling = async (req, res) => {
     }
 
     const updateData = { ...isComponent.styling, ...stylingObj };
-    console.log(updateData)
+    console.log(updateData);
     const filter = await UserProjectLayout.findOne({ _id: componentId });
     const update = {
       styling: updateData,
